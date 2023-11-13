@@ -12,9 +12,10 @@
 </head>
 <body>
     <p>Hello, This is the profile page</p>
-    <form id="uploadForm" enctype="multipart/form-data">
+    <form id="uploadForm" enctype="multipart/form-data" method="POST">
         <input type="file" name="profile" id="profile">
-        <input type="submit" id="submitBttn" value="Submit">
+        <button type="submit" name="submit">Submit</button>
     </form>
+    <button id="logoutBttn">Log out</button>
 </body>
 </html>

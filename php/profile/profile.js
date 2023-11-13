@@ -4,6 +4,7 @@ $(document).ready(() => {
         e.preventDefault();
 
         let formData = new FormData($("#uploadForm")[0]);
+        
 
         $.ajax({
             url: 'profile.php', 
@@ -15,15 +16,36 @@ $(document).ready(() => {
             success: function (response) {
                 // Handle the server response
                 // parsed = JSON.parse(response);
-                console.log(response);
+                alert(response);
             },
             error: function (error) {
                 // Handle errors
                 console.log(error);
             }
-    
-    
+
         });
     })
-   
+   $("#logoutBttn").on("click", () => {
+        $.ajax({
+            type: "POST",
+            url: "../logout.php",
+            data: {},
+            success: function(response) {
+            // Handle the server's response (e.g., show the next question)
+            
+            location.reload();
+             
+                            
+            },
+            error: function(error) {
+
+            console.error("Error:", error);
+
+            },
+        })
+
+    })
+
 })
+
+
