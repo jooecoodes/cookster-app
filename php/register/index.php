@@ -9,14 +9,20 @@
 </head>
 <body>
     <form id="registrationForm">
+        <div class="fullName">
+            <input type="text" name="fname" id="fname" placeholder="First Name">
+            <p id="fnameIndicator"></p>
+            <input type="text" name="lname" id="lname" placeholder="Last Name">
+            <p id="lnameIndicator"></p>
+        </div>
         <div class="emailDiv">
-             <input type="text" name="email" id="email" placeholder="email">
+             <input type="text" name="email" id="email" placeholder="Email">
              <p id="emailIndicator"></p>
         </div>
         <div class="passwordDiv">
-            <input type="password" name="password" id="password" placeholder="password">
+            <input type="password" name="password" id="password" placeholder="Password">
             <p id="pwdIndicator"></p>
-            <input type="password" name="confPassword" id="confpwd" placeholder="confirm password">
+            <input type="password" name="confPassword" id="confpwd" placeholder="Confirm Password">
             <p id="confPwdIndicator"></p>
         </div>
         <input type="submit" id="submitBttn">

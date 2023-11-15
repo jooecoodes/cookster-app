@@ -1,13 +1,15 @@
 $(document).ready(() => {
     $('#registrationForm').on('submit', (e) => {
         e.preventDefault();
+        let userFName = $("#fnameIndicator").val();
+        let userLName = $("#lnameIndicator").val();
         let userEmail = $('#email').val();
         let userPassword = $('#password').val();
         let userConfPwd = $('#confPass').val();
         let emailIndicator = $("#emailIndicator").val();
         let pwdIndicator = $("#pwdIndicator").val();
         let confPwdIndicator = $('#confPwdIndicator').val();
-        
+      
         if(emailIndicator == "Email is available") {
             if(pwdIndicator == "Password is strong") {
                 if(confPwdIndicator == "Password match") {
@@ -38,6 +40,48 @@ $(document).ready(() => {
        
         
     })
+    // Fname
+    $("#fname").keyup(function(){
+      let fname = $(this).val();
+      if(fname.length > 1){
+        $.ajax({
+          type: 'POST',
+          url: 'fullname_checker.php',
+          data: {fname: fname},
+          success: function(response){
+            console.log(response);
+            if(response == true){
+              $("#fnameIndicator").text("First Name is fine");
+            } else {
+              $("#fnameIndicator").text("First Name must not exceed 8 letters");
+            }
+          }
+        });
+      } else {
+        $("#fnameIndicator").text("");
+      }
+   });
+    // Lname
+    $("#lname").keyup(function(){
+      let lname = $(this).val();
+      if(lname.length > 1){
+        $.ajax({
+          type: 'POST',
+          url: 'fullname_checker.php',
+          data: {lname: lname},
+          success: function(response){
+            console.log(response);
+            if(response == true){
+              $("#lnameIndicator").text("Last Name is fine");
+            } else {
+              $("#lnameIndicator").text("First Name must not exceed 8 letters");
+            }
+          }
+        });
+      } else {
+        $("#lnameIndicator").text("");
+      }
+   });
     // Email
     $("#email").keyup(function(){
         let email = $(this).val();

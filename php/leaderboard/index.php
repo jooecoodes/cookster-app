@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="leaderboard.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -15,18 +17,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>jane@example.com</td>
-            </tr>
+            
             <!-- Add more rows as needed -->
         </tbody>
     </table>
+    <button id="bttn">click</button>
 </body>
 </html>
