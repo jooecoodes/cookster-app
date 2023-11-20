@@ -17,6 +17,7 @@ $(document).ready(() => {
                 // Handle the server response
                 // parsed = JSON.parse(response);
                 alert(response);
+                window.location.reload();
             },
             error: function (error) {
                 // Handle errors

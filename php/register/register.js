@@ -10,7 +10,6 @@ $(document).ready(() => {
         e.preventDefault();
   
         //Function Pass
-        console.log("clicked");
         let fname = $("#fname").val();
         let lname = $("#lname").val();
         let email = $('#email').val();
@@ -87,15 +86,18 @@ $(document).ready(() => {
             url: 'check_email.php',
             data: {email: email},
             success: function(response){
+              console.log(response);
               if(response == "userexist"){
                 $("#emailIndicator").text("Email is already registered.");
                 emailFlag = false;
-              } else if(response == "Email is invalid") {
-                $("#emailIndicator").text("Invalid Email");
-                emailFlag = false;
-              } else {
+              } 
+              if(response == "Email is valid") {
                 $("#emailIndicator").text("Email is available.");
                 emailFlag = true;
+              } 
+              if(response == "Email is invalid"){
+                $("#emailIndicator").text("Invalid Email");
+                emailFlag = false;
               }
              
             }
@@ -183,8 +185,7 @@ function register(userEmail, userPassword, userFName, userLName) {
         // Handle the server's response (e.g., show the next question)
         
         console.log(response);
-        
-        
+
     },
     error: function(error) {
         console.error("Error:", error);

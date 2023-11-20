@@ -40,9 +40,8 @@
                 <header>
                     <img src="" alt="">
                     <div class="login-signup">
-                        <a href="">Log in</a>
-                        <a href="">Sign up</a>
-                        
+                        <a href="../login/">Log in</a>
+                        <a href="../register/">Sign up</a>
                     </div>
 
                 </header>

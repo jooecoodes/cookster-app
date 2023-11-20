@@ -1,18 +1,15 @@
 <?php 
 
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "mathwiz_database";
-
-    $conn = mysqli_connect($host, $username, $password, $database);
+    include "../db_conn.php";
    
     session_start();
 
     
-    if(isset($_POST)) {
+    if(isset($_POST['email'])) {
         $userEmail = htmlspecialchars($_POST['email']);
         $userPassword = htmlspecialchars($_POST['password']);
+        $userFName = htmlspecialchars($_POST['fname']);
+        $userLName = htmlspecialchars($_POST['lname']);
         $selectionSql = "SELECT * FROM user WHERE useremail = '$userEmail' AND userpassword = '$userPassword'";
         $result = mysqli_query($conn, $selectionSql);
 
@@ -22,9 +19,8 @@
             $dateRegistration = date("Y-m-d");
             $userEmail = $_POST['email'];
             $userPassword = $_POST['password'];
-            $selectionSql = "INSERT INTO user(useremail, userpassword, flagptindicator, dateregistration) VALUES('$userEmail', '$userPassword', '1', '$dateRegistration')";
-    
-            mysqli_query($conn, $selectionSql);
+            $insertionSql = "INSERT INTO user(useremail, userpassword, flagptindicator, dateregistration, fname, lname) VALUES('$userEmail', '$userPassword', '1', '$dateRegistration', '$userFName', '$userLName')";
+            mysqli_query($conn, $insertionSql);
             echo "Insertion Completed";
             
             $conn->close();

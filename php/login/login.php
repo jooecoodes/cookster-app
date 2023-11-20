@@ -1,12 +1,7 @@
 <?php 
      session_start();
 
-     $host = "localhost";
-     $username = "root";
-     $password = "";
-     $database = "mathwiz_database";
- 
-     $conn = mysqli_connect($host, $username, $password, $database);
+    include "../db_conn.php";
  
      if (isset($_POST['email'])) {
          $userEmail = $_POST['email'];
@@ -40,6 +35,10 @@
          }
      }
           
-
+     function userInitSessions() {
+        $_SESSION['userId'] = $rows["id"];
+        $_SESSION['userFlagPtIndicator'] = $rows["flagptindicator"];
+        $_SESSION['userislogged'] = true;
+     }
 
 ?>

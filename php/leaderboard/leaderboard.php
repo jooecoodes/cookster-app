@@ -1,11 +1,7 @@
 <?php 
 
-   $host = "localhost";
-   $username = "root";
-   $password = "";
-   $database = "mathwiz_database";
+   include "../db_conn.php";
 
-   $conn = mysqli_connect($host, $username, $password, $database);
    if(isset($_POST)) {
       if(isset($_POST['post'])) {
       
