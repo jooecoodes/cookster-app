@@ -27,6 +27,7 @@
         </div>
         <input type="submit" id="submitBttn">
     </form>
+    <a href="../login/">Log in</a>
     
 </body>
 </html>

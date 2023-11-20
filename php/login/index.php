@@ -34,7 +34,7 @@
                 <p id="passwordIndicator"></p>
                 <input type="submit" id="submitBttn">
             </form>
-            
+            <a href="../register/">Sign up</a>
         </body>
         </html>
     <?php

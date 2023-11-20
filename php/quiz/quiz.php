@@ -32,7 +32,7 @@
 			if(isset($_POST)){
 				if (isset($_POST[$questionKey], $_POST[$answerKey], $_POST[$quizKey])) {
 					$correctAnswer = htmlspecialchars($_POST[$answerKey]);
-					$userAnswer = htmlspecialchars($_POST[$questionKey]); // Always escape output
+					$userAnswer = htmlspecialchars($_POST[$questionKey]); 
 					$quiz =  htmlspecialchars($_POST[$quizKey]);
 					if ($_POST[$questionKey] == $_POST[$answerKey]) {
 						echo "
