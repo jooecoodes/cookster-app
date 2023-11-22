@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Hello, This is the Pretest Page</p>
+    <a href="./login/">Log in</a>
+    <a href="./register/">Sign up</a>
 </body>
 </html>

@@ -12,7 +12,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#playAgainBttn').on('click', () => {
-				window.location.href = 'index.html';
+				window.location.href = '.';
 			})
 		})
 	</script>

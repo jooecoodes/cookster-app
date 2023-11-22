@@ -1,0 +1,17 @@
+{
+    "name": "student/sample-quiz",
+    "autoload": {
+        "psr-4": {
+            "Student\\SampleQuiz\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jooecoodes",
+            "email": "jefeljoevillacorta@gmail.com"
+        }
+    ],
+    "require": {
+        "tecnickcom/tcpdf": "^6.6"
+    }
+}

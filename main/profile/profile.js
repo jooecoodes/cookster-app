@@ -47,6 +47,40 @@ $(document).ready(() => {
 
     })
 
+    $("#badgeBttn").on("click", () => {
+        $.ajax({
+            type: "POST",
+            url: "badge_setup.php",
+            data: { requestBadge: "request_successful"},
+            success: function(response) {
+            // Handle the server's response (e.g., show the next question)
+                jsonParsedData = JSON.parse(response);
+                jsonParsedData.forEach((badgeName) => {
+                    console.log(badgeName);
+                    fileExt = ".png"
+                    path = "../../assets/badge/";
+                    badgesHtml = `
+                        <div>
+                            <img src="${path + badgeName + fileExt}" alt="profile">
+                        </div>
+                    `
+                    $("#displayBadges").append(badgesHtml);
+
+                    
+                    
+                });
+            },
+            error: function(error) {
+
+            console.error("Error:", error);
+
+            },  
+        })
+
+ 
+    })
+    
+    
 })
 
 

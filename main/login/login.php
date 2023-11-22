@@ -31,7 +31,7 @@
              $conn->close();
          } else {
              echo "Login or password is invalid";
- 
+
          }
      }
           
