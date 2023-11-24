@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="./login/">Log in</a>
-    <a href="./register/">Sign up</a>
+    <a href="../login/">Log in</a>
+    <a href="../register/">Sign up</a>
 </body>
 </html>

@@ -16,12 +16,14 @@ if(isset($_POST['email'])) {
 
     if(mysqli_num_rows($result) > 0) {
         echo "userexist";
-    } 
-    if($identifier) {
-       echo "Email is valid";
     } else {
-        echo "Email is invalid";
+        if($identifier) {
+            echo "Email is valid";
+         } else {
+             echo "Email is invalid";
+         }
     }
+    
 
   
 }

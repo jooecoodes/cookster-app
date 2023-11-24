@@ -3,9 +3,22 @@
 
     if(isset($_SESSION['userId'])) {
         $userId =  $_SESSION['userId'];
-        $fileExt = isset($_SESSION['file_ext']) ? $_SESSION['file_ext'] : '';
-    
-        $_SESSION['profileSrc'] = "../../assets/profile/user={$userId}.{$fileExt}";
+        $userProfile;
+        if(isset($_SESSION['default-img-profile'])) {
+            if($_SESSION['default-img-profile'] == 'male') {
+                $userProfile = 'default-male-profile.jpg';
+            } else if ($_SESSION['default-img-profile'] == 'female') {
+                $userProfile = 'default-female-profile.jpg';
+            } 
+        } else {
+            if(isset($_SESSION['userprofile'])) {
+                if($_SESSION['userprofile'] == '') {
+                    $userProfile = 'default-question-profile.png';
+                } else {
+                    $userProfile = $_SESSION['userprofile'];
+                }
+            }
+        }
 
         ?> 
 
@@ -20,7 +33,7 @@
         </head>
         <body>
             <p>Hello, This is the profile page</p>
-            <img src="<?php echo $_SESSION['profileSrc'] ?>" alt="profile">
+            <img src="<?php echo "../../assets/profile/" . $userProfile ?>" alt="profile">
             <form id="uploadForm" enctype="multipart/form-data" method="POST">
                 <input type="file" name="profile" id="profile">
                 <button type="submit" name="submit">Submit</button>

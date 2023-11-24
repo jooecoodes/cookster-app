@@ -10,6 +10,7 @@
         $userPassword = htmlspecialchars($_POST['password']);
         $userFName = htmlspecialchars($_POST['fname']);
         $userLName = htmlspecialchars($_POST['lname']);
+        $userGender = (isset($_POST['gender'])) ? htmlspecialchars($_POST['gender']) : '';
         $selectionSql = "SELECT * FROM user WHERE useremail = '$userEmail' AND userpassword = '$userPassword'";
         $result = mysqli_query($conn, $selectionSql);
 
@@ -19,7 +20,7 @@
             $dateRegistration = date("Y-m-d");
             $userEmail = $_POST['email'];
             $userPassword = $_POST['password'];
-            $insertionSql = "INSERT INTO user(useremail, userpassword, flagptindicator, dateregistration, fname, lname) VALUES('$userEmail', '$userPassword', '1', '$dateRegistration', '$userFName', '$userLName')";
+            $insertionSql = "INSERT INTO user(useremail, userpassword, flagptindicator, dateregistration, fname, lname, gender) VALUES('$userEmail', '$userPassword', '1', '$dateRegistration', '$userFName', '$userLName', '$userGender')";
             mysqli_query($conn, $insertionSql);
             echo "Insertion Completed";
             

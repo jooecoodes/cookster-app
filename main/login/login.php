@@ -21,8 +21,18 @@
  
                  $_SESSION['userId'] = $rows["id"];
                  $_SESSION['userFlagPtIndicator'] = $rows["flagptindicator"];
-                 $_SESSION['userislogged'] = true;
- 
+                 if(!$rows['userprofile'] == '') {
+                    if($rows['userprofile'] == 'male') {
+                        $_SESSION['default-userprofile'] = 'male';
+                    } else if($rows['userprofile'] == 'female') {
+                        $_SESSION['default-userprofile'] = 'female';
+                    } else {
+                        $_SESSION['userprofile'] = $rows['userprofile'];
+                    }
+                 } else {
+                    $_SESSION['userprofile'] = '';
+                 } 
+                 
                 
                  echo "User login successfully";
  
@@ -35,10 +45,5 @@
          }
      }
           
-     function userInitSessions() {
-        $_SESSION['userId'] = $rows["id"];
-        $_SESSION['userFlagPtIndicator'] = $rows["flagptindicator"];
-        $_SESSION['userislogged'] = true;
-     }
 
 ?>

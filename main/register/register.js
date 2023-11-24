@@ -39,13 +39,21 @@ $(document).ready(() => {
           data: {fname: fname},
           success: function(response){
             console.log(response);
-            if(response == true){
-              $("#fnameIndicator").text("First Name is fine");
-              fnameFlag = true;
-            } else {
-              $("#fnameIndicator").text("First Name must not exceed 8 letters");
-              fnameFlag = false;
-            }
+            jsonParsed = JSON.parse(response);
+            console.log(jsonParsed);
+
+            // console.log(response);
+            // if(response == "Full name is already taken") {
+            //   $("#fnameIndicator").text("Full name is already taken")
+            //   fnameFlag = false;
+            // }
+            // if(response == true){
+            //   $("#fnameIndicator").text("First Name is fine");
+            //   fnameFlag = true;
+            // } else {
+            //   $("#fnameIndicator").text("First Name must not exceed 8 letters");
+            //   fnameFlag = false;
+            // }
           }
         });
       } else {
@@ -53,6 +61,7 @@ $(document).ready(() => {
         fnameFlag = false;
       }
    });
+   
     // Lname
     $("#lname").keyup(function(){
       let lname = $(this).val();
@@ -62,14 +71,21 @@ $(document).ready(() => {
           url: 'fullname_checker.php',
           data: {lname: lname},
           success: function(response){
-            console.log(response);
-            if(response == true){
-              $("#lnameIndicator").text("Last Name is fine");
-              lnameFlag = true;
-            } else {
-              $("#lnameIndicator").text("Last Name must not exceed 8 letters");
-              lnameFlag = false;
-            }
+            console.log(response)
+            jsonParsed = JSON.parse(response);
+            console.log(jsonParsed);
+            // console.log(response);
+            // if(response == "Full name is already taken") {
+            //   $("#fnameIndicator").text("Full name is already taken")
+            //   fnameFlag = false;
+            // }
+            // if(response == true){
+            //   $("#lnameIndicator").text("Last Name is fine");
+            //   lnameFlag = true;
+            // } else {
+            //   $("#lnameIndicator").text("Last Name must not exceed 8 letters");
+            //   lnameFlag = false;
+            // }
           }
         });
       } else {
@@ -77,6 +93,32 @@ $(document).ready(() => {
         lnameFlag = false;
       }
    });
+   $("#lname").on("blur", () => {
+    $fnameVal = $("#fname").val();
+    $lnameVal = $("#lname").val();
+    $.ajax({
+      type: 'POST',
+      url: 'fullname_checker.php',
+      data: {checkfullname: true, fnameVal: fnameVal, lnameVal: lnameVal},
+      success: function(response){
+        console.log(response)
+        jsonParsed = JSON.parse(response);
+        console.log(jsonParsed);
+        // console.log(response);
+        // if(response == "Full name is already taken") {
+        //   $("#fnameIndicator").text("Full name is already taken")
+        //   fnameFlag = false;
+        // }
+        // if(response == true){
+        //   $("#lnameIndicator").text("Last Name is fine");
+        //   lnameFlag = true;
+        // } else {
+        //   $("#lnameIndicator").text("Last Name must not exceed 8 letters");
+        //   lnameFlag = false;
+        // }
+      }
+    });
+   })
     // Email
     $("#email").keyup(function(){
         let email = $(this).val();
@@ -148,6 +190,9 @@ $(document).ready(() => {
           confPwdFlag = false;
         }
      });
+
+   
+    
 })
 
 function fieldCheck(fn, ln, em, pwd, confpwd) {
@@ -184,11 +229,12 @@ function register(userEmail, userPassword, userFName, userLName) {
     success: function(response) {
         // Handle the server's response (e.g., show the next question)
         
-        console.log(response);
-
+        alert("User login successfully");
+        window.location.href = "../login/";
     },
     error: function(error) {
         console.error("Error:", error);
     }
   })
 }
+
