@@ -39,8 +39,8 @@ $(document).ready(() => {
           data: {fname: fname},
           success: function(response){
             console.log(response);
-            jsonParsed = JSON.parse(response);
-            console.log(jsonParsed);
+            // jsonParsed = JSON.parse(response);
+            // console.log(jsonParsed);
 
             // console.log(response);
             // if(response == "Full name is already taken") {
