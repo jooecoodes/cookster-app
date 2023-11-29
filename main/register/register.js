@@ -14,6 +14,7 @@ $(document).ready(() => {
         let lname = $("#lname").val();
         let email = $('#email').val();
         let pwd = $('#password').val()
+        let gender = $("input[name='gender']:checked").val();
         let holder = fieldCheck(fnameFlag, lnameFlag, emailFlag, pwdFlag, confPwdFlag);
         if (holder.length > 0) {
           alert(holder);
@@ -23,7 +24,7 @@ $(document).ready(() => {
           console.log(pwdFlag);
           console.log(confPwdFlag);
         } else {
-          register(email, pwd, fname, lname);
+          register(email, pwd, fname, lname, gender);
         }
     })
 
@@ -38,22 +39,16 @@ $(document).ready(() => {
           url: 'fullname_checker.php',
           data: {fname: fname},
           success: function(response){
+            
             console.log(response);
-            jsonParsed = JSON.parse(response);
-            console.log(jsonParsed);
-
-            // console.log(response);
-            // if(response == "Full name is already taken") {
-            //   $("#fnameIndicator").text("Full name is already taken")
-            //   fnameFlag = false;
-            // }
-            // if(response == true){
-            //   $("#fnameIndicator").text("First Name is fine");
-            //   fnameFlag = true;
-            // } else {
-            //   $("#fnameIndicator").text("First Name must not exceed 8 letters");
-            //   fnameFlag = false;
-            // }
+            if(response == "Fname is ok"){
+              $("#fnameIndicator").text("First Name is fine");
+              fnameFlag = true;
+            } 
+            if (response == "Fname is not ok") {
+              $("#fnameIndicator").text("First Name must not exceed 8 letters");
+              fnameFlag = false;
+            }
           }
         });
       } else {
@@ -64,6 +59,7 @@ $(document).ready(() => {
    
     // Lname
     $("#lname").keyup(function(){
+      console.log("im executed");
       let lname = $(this).val();
       if(lname.length > 1){
         $.ajax({
@@ -71,21 +67,15 @@ $(document).ready(() => {
           url: 'fullname_checker.php',
           data: {lname: lname},
           success: function(response){
-            console.log(response)
-            jsonParsed = JSON.parse(response);
-            console.log(jsonParsed);
-            // console.log(response);
-            // if(response == "Full name is already taken") {
-            //   $("#fnameIndicator").text("Full name is already taken")
-            //   fnameFlag = false;
-            // }
-            // if(response == true){
-            //   $("#lnameIndicator").text("Last Name is fine");
-            //   lnameFlag = true;
-            // } else {
-            //   $("#lnameIndicator").text("Last Name must not exceed 8 letters");
-            //   lnameFlag = false;
-            // }
+            console.log("success response")
+            if(response == "Lname is ok"){
+              $("#lnameIndicator").text("Last Name is fine");
+              lnameFlag = true;
+            } 
+            if (response == "Lname is not ok") {
+              $("#lnameIndicator").text("Last Name must not exceed 8 letters");
+              lnameFlag = false;
+            }
           }
         });
       } else {
@@ -93,31 +83,34 @@ $(document).ready(() => {
         lnameFlag = false;
       }
    });
+
+
    $("#lname").on("blur", () => {
-    $fnameVal = $("#fname").val();
-    $lnameVal = $("#lname").val();
-    $.ajax({
-      type: 'POST',
-      url: 'fullname_checker.php',
-      data: {checkfullname: true, fnameVal: fnameVal, lnameVal: lnameVal},
-      success: function(response){
-        console.log(response)
-        jsonParsed = JSON.parse(response);
-        console.log(jsonParsed);
-        // console.log(response);
-        // if(response == "Full name is already taken") {
-        //   $("#fnameIndicator").text("Full name is already taken")
-        //   fnameFlag = false;
-        // }
-        // if(response == true){
-        //   $("#lnameIndicator").text("Last Name is fine");
-        //   lnameFlag = true;
-        // } else {
-        //   $("#lnameIndicator").text("Last Name must not exceed 8 letters");
-        //   lnameFlag = false;
-        // }
-      }
-    });
+    console.log("blur executed");    
+    let fnameVal = $("#fname").val();
+    let lnameVal = $("#lname").val();
+    if(fnameVal.length > 1 && lnameVal.length > 1) {
+      $.ajax({
+        type: 'POST',
+        url: 'fullname_checker2.php',
+        data: {checkfullname: true, fname: fnameVal, lname: lnameVal},
+        success: function(response){
+          if(response == "Full name is already taken") {
+            $("#fnameIndicator").text("Full name is already taken")
+            $("#lnameIndicator").text("Full name is already taken")
+            fnameFlag = false;
+            lnameFlag = false;
+          } else {
+            $("#fnameIndicator").text("Full name is not registered")
+            $("#lnameIndicator").text("Full name is not registered")
+            fnameFlag = true;
+            lnameFlag = true;
+          }
+        }
+      });
+    }
+  
+   
    })
     // Email
     $("#email").keyup(function(){
@@ -216,7 +209,7 @@ function fieldCheck(fn, ln, em, pwd, confpwd) {
   return wrongIdentifier;
 }
 
-function register(userEmail, userPassword, userFName, userLName) {
+function register(userEmail, userPassword, userFName, userLName, userGender) {
   $.ajax({
     type: "POST",
     url: "register.php",
@@ -224,12 +217,13 @@ function register(userEmail, userPassword, userFName, userLName) {
       email: userEmail, 
       password: userPassword,
       fname: userFName,
-      lname: userLName
+      lname: userLName,
+      gender: userGender,
     },
     success: function(response) {
         // Handle the server's response (e.g., show the next question)
-        
-        alert("User login successfully");
+        console.log(response);
+        alert("User register successfully");
         window.location.href = "../login/";
     },
     error: function(error) {

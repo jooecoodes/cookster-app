@@ -73,12 +73,14 @@
                 </div>
                 <label>Optional</label>
                
-                <div>
+                
                     <label for="male">Male</label>
                     <input type="radio" name="gender" value="male" id="male">
                     <label for="female">Female</label>
                     <input type="radio" name="gender" value="female" id="female">
-                </div>
+                
+          
+
                 <input type="submit" name="submit" id="submitBttn">
                 
             </form>
