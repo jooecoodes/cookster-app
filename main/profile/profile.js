@@ -1,5 +1,4 @@
 $(document).ready(() => {
-
     $("#uploadForm").on("submit", (e) => {
         e.preventDefault();
 

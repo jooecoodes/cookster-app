@@ -1,32 +1,43 @@
 $(document).ready(() => {
-    $("#loginForm").on("submit", (e) => {
+  
+    $("#loginForm").on("submit", function (e) {
         e.preventDefault();
-        let userEmail = $('#email').val();
-        let userPassword = $('#password').val();
-
-        
-
+    
+        // Create FormData object and append form data
+        var formData = new FormData(this);
+    
         $.ajax({
             type: "POST",
             url: "login.php",
-            data: {email: userEmail, password: userPassword},
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(response) {
-                // Handle the server's response (e.g., show the next question)
-                if(response == "User login successfully") {
-                   
-                    alert(response);
-                    window.location.href = "../profile/";
-                } else {
-                    
-                    $("#emailIndicator").text("Email - " + response);
-                    $("#passwordIndicator").text("Password - " + response);
+                console.log(response);
+                if(response == "Empty Input") {
+                    alert("Empty Input");
                 }
+                if(response == "User login successfully") {
+                    location.href = "../profile/";
+                } 
+                if(response == "Login or password is invalid"){
+                    alert("Login or password is invalid");
+                }
+                if(response == "Recaptcha Error") {
+                    alert("Recaptcha is invalid")
+                } 
+               
                 
-                
+                // Handle the server's response
             },
             error: function(error) {
                 console.error("Error:", error);
             }
-        })
-    })
-})
+        });
+    });
+    
+});
+
+function onRecaptchaSubmit(token) {
+    $("#g-token").val(token); // Set the token in a hidden input field
+}

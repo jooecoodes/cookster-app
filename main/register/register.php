@@ -26,8 +26,6 @@
             echo "Insertion Completed";
             $conn->close();
         }
-       
-
     }
 
 ?>
