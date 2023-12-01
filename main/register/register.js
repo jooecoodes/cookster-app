@@ -41,6 +41,7 @@ $(document).ready(() => {
           success: function(response){
             
             console.log(response);
+<<<<<<< HEAD
             if(response == "Fname is ok"){
               $("#fnameIndicator").text("First Name is fine");
               fnameFlag = true;
@@ -49,6 +50,23 @@ $(document).ready(() => {
               $("#fnameIndicator").text("First Name must not exceed 8 letters");
               fnameFlag = false;
             }
+=======
+            // jsonParsed = JSON.parse(response);
+            // console.log(jsonParsed);
+
+            // console.log(response);
+            // if(response == "Full name is already taken") {
+            //   $("#fnameIndicator").text("Full name is already taken")
+            //   fnameFlag = false;
+            // }
+            // if(response == true){
+            //   $("#fnameIndicator").text("First Name is fine");
+            //   fnameFlag = true;
+            // } else {
+            //   $("#fnameIndicator").text("First Name must not exceed 8 letters");
+            //   fnameFlag = false;
+            // }
+>>>>>>> origin/master
           }
         });
       } else {
