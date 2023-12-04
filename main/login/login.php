@@ -28,7 +28,7 @@
                             $sql = "UPDATE user SET token = '$token' WHERE id = " . $rows['id'];
                             mysqli_query($conn, $sql);
             
-
+                            
                             $_SESSION['userId'] = $rows["id"];
                             $_SESSION['userFlagPtIndicator'] = $rows["flagptindicator"];
                             $_SESSION['userGender'] = $rows['gender'];

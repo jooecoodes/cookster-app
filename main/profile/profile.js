@@ -89,9 +89,10 @@ $(document).ready(() => {
         location.href = "?edit=true";  
     })
 
-    // edit part
+
 
     
+
 })
 
 

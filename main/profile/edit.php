@@ -1,60 +1,163 @@
 <?php 
+    session_start();
     include '../db_conn.php';
 
-    session_start();
-    if(isset($_SESSION['userId'])){
-        $userId = $_SESSION['userId'];
-        $selectionSql = "SELECT * FROM user WHERE id = $userId";
-        $result = mysqli_query($conn, $selectionSql);
+    // handle request
+
+    // uname
+    if(isset($_POST['hiddenUname'])) {
+        $newUname = (isset($_POST['uname'])) ? $_POST['uname'] : 'uname not set';
+        $userId   = (isset($_SESSION['userId'])) ? $_SESSION['userId'] : 'user id not set';
+        $pwd      = (isset($_POST['pwd'])) ? $_POST['pwd'] : 'pwd is not set';
+        $stmt    = $conn->prepare("SELECT userpassword FROM user WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
         
-        if(mysqli_num_rows($result) > 0) {
-            $userUsername = '';
-            $userProfile = '';
-            $userPassword = '';
-            $userFName = '';
-            $userLName = '';
-            $userGender = '';
-            while ($rows = mysqli_fetch_assoc($result)) {
-                $userUsername = $rows['username'];
-                $userProfile = $rows['userprofile'];
-                $userPassword = $rows['userpassword'];
-                $userFName = $rows['fname'];
-                $userLName = $rows['lname'];
-                $userGender = $rows['gender'];    
-             
+        // check result
+        $result = $stmt->get_result();
+        while($row = $result->fetch_assoc()) {
+            //conf pwd
+            if($pwd == $row['userpassword']) {
+                changeUname($conn, $userId, $newUname);
+            } else {
+                echo "Password error";
             }
-
-            ?>
-                    
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-            </head>
-            <body>
-                <p>Username: <?php echo $userUsername ?></p>
-                <p>User Profile: <?php echo $userProfile ?></p>
-                <p>User Password: <?php echo $userPassword ?></p>
-                <p>User Fname: <?php echo $userFName ?></p>
-                <p>User Lname: <?php echo $userLName ?></p>
-                
-            </body>
-            </html>
-            <?php
-            
-            
-             
-        } else {
-            echo "User not found";
         }
-       
-
-       
-    } else { 
-        include '../logged_out.php';
-
     }
 
+    // pwd
+    if(isset($_POST['hiddenPwd'])) {
+        $newPwd  = (isset($_POST['newpwd'])) ? $_POST['newpwd'] : 'password not set';
+        $confPwd = (isset($_POST['confpwd'])) ? $_POST['confpwd'] : 'confpwd not set';
+        $userId  = (isset($_SESSION['userId'])) ? $_SESSION['userId'] : 'user id not set';
+        $pwd     = (isset($_POST['pwd'])) ? $_POST['pwd'] : 'pwd is not set';
+        $stmt    = $conn->prepare("SELECT userpassword FROM user WHERE id = ? ");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        
+        // check result
+        $result = $stmt->get_result();
+        while($row = $result->fetch_assoc()) {
+            //conf pwd
+            if($pwd == $row['userpassword']) {
+                changePwd($conn, $userId, $newPwd);
+            } else {
+                echo "Password error";
+            }
+        }
+    }
+
+    // fname
+    if(isset($_POST['hiddenFname'])) {
+        $newFname = (isset($_POST['newfname'])) ? $_POST['newfname'] : 'new fname not set';
+        $userId   = (isset($_SESSION['userId'])) ? $_SESSION['userId'] :  ' id not set';
+        $pwd      = (isset($_POST['pwd'])) ? $_POST['pwd'] : 'pwd is not set';
+        $stmt     = $conn->prepare("SELECT userpassword FROM user WHERE id = ? ");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        
+        // check result
+        $result = $stmt->get_result();
+        while($row = $result->fetch_assoc()) {
+            //conf pwd
+            if($pwd == $row['userpassword']) {
+                changeFname($conn, $userId, $newPwd);
+            } else {
+                echo "Password error";
+            }
+        }
+    }
+
+    //lname 
+    if(isset($_POST['hiddenLname'])) {
+        $newFname = (isset($_POST['newlname'])) ? $_POST['newfname'] : 'new fname not set';
+        $userId   = (isset($_SESSION['userId'])) ? $_SESSION['userId'] :  ' id not set';
+        $pwd      = (isset($_POST['pwd'])) ? $_POST['pwd'] : 'pwd is not set';
+        $stmt     = $conn->prepare("SELECT userpassword FROM user WHERE id = ? ");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        
+        // check result
+        $result = $stmt->get_result();
+        while($row = $result->fetch_assoc()) {
+            //conf pwd
+            if($pwd == $row['userpassword']) {
+                changeLname($conn, $userId, $newPwd);
+            } else {
+                echo "Password error";
+            }
+        }
+    }
+
+
+
+
+    // edit uname
+    function changeUname($conn, $userId, $newUname) {
+        $stmt = $conn->prepare("UPDATE user SET username = ? WHERE id = ?");
+        $stmt->bind_param("si", $newUname, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Successfully edited uname'";
+        } else {
+            echo "No rows found";
+        }
+    }
+    // edit pwd
+    function changePwd($conn, $userId, $newPwd) {
+        $stmt = $conn->prepare("UPDATE user SET userpassword = ? WHERE id = ?");
+        $stmt->bind_param("si", $newPwd, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Successfully edited pwd";
+        } else {
+            echo "No rows found";
+        }
+    }
+
+    // edit pfp
+    function changePfp($conn, $userId, $newPfp) {
+        $stmt = $conn->prepare("UPDATE user SET userprofile = ? WHERE id = ?");
+        $stmt->bind_param("si", $newPfp, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Successfully edited pfp";
+        } else {
+            echo "No rows found";
+        }
+    }
+
+    // change fname
+    function changeFname($conn, $userId, $newFname) {
+        $stmt = $conn->prepare("UPDATE user SET fname = ? WHERE id = ?");
+        $stmt->bind_param("si", $newFname, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "<script>Successfully edited fname</script>";
+        } else {
+            echo "No rows found";
+        }
+    }
+
+    // change lname
+    function changeLname($conn, $userId, $newLname) {
+        $stmt = $conn->prepare("UPDATE user SET fname = ? WHERE id = ?");
+        $stmt->bind_param("si", $newLname, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Successfully edited lname";
+        } else {
+            echo "No rows found";
+        }
+    }
 ?>
