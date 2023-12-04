@@ -3,14 +3,19 @@
 
     if(isset($_SESSION['userId'])) {
         $userId =  $_SESSION['userId'];
-        $userProfilePath = (isset($_SESION['userprofile'])) ? $_SESSION['userprofile'] : 'user profile not set';
+        $userProfilePath = (empty($_SESSION['userprofile'])) ? '' : $_SESSION['userprofile'];
         $profileBlankFlag = (empty($userProfilePath)) ? true : false;
         $userProfile;
-        if(isset($_SESSION['gender']) && $profileBlankFlag) {
-            $userGender = $_SESSION['gender'];
+        $userGender = (empty($_SESSION['userGender'])) ?  '' : $_SESSION['userGender'];
+        print_r($userGender);
+        if($profileBlankFlag) {
+            if(empty($userGender)) {
+                $userProfile = 'default-question-profile.png';
+            }
             if($userGender == "male") {
                 $userProfile = 'default-male-profile.jpg';
-            } else if ($userGender == 'female') {
+            } 
+            if ($userGender == 'female') {
                 $userProfile = 'default-female-profile.jpg';
             } 
         } else {

@@ -34,8 +34,7 @@ $(document).ready(() => {
             // Handle the server's response (e.g., show the next question)
             
             location.reload();
-             
-                            
+                         
             },
             error: function(error) {
 
@@ -56,16 +55,18 @@ $(document).ready(() => {
                 jsonParsedData = JSON.parse(response);
                 jsonParsedData.forEach((badgeName) => {
                     console.log(badgeName);
-                    fileExt = ".png"
-                    path = "../../assets/badge/";
-                    badgesHtml = `
-                        <div>
-                            <img src="${path + badgeName + fileExt}" alt="profile">
-                        </div>
-                    `
-                    $("#displayBadges").append(badgesHtml);
-
-                    
+                    if(badgeName == '') {
+                        console.log("No badges");
+                    } else {
+                        fileExt = ".png"
+                        path = "../../assets/badge/";
+                        badgesHtml = `
+                            <div>
+                                <img src="${path + badgeName + fileExt}" alt="badge">
+                            </div>
+                        `
+                        $("#displayBadges").append(badgesHtml);
+                    }
                     
                 });
             },

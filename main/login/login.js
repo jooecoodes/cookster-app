@@ -18,7 +18,9 @@ $(document).ready(() => {
                     alert("Empty Input");
                 }
                 if(response == "User login successfully") {
+                    window.location.reload();
                     location.href = "../profile/";
+                    
                 } 
                 if(response == "Login or password is invalid"){
                     alert("Login or password is invalid");
