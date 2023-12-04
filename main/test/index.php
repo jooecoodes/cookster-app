@@ -19,7 +19,7 @@
             top: 100px; /* Adjust to position the name vertically */
             left: 200px; /* Adjust to position the name horizontally */
             font-size: 24px; /* Adjust font size as needed */
-            color: #fff; /* Adjust text color as needed */
+            color: black; /* Adjust text color as needed */
         }
     </style>
 </head>

@@ -25,6 +25,8 @@ $(document).ready(() => {
 
         });
     })
+
+    //logout bttn
    $("#logoutBttn").on("click", () => {
         $.ajax({
             type: "POST",
@@ -45,6 +47,7 @@ $(document).ready(() => {
 
     })
 
+    //badge bttn
     $("#badgeBttn").on("click", () => {
         $.ajax({
             type: "POST",
@@ -58,9 +61,10 @@ $(document).ready(() => {
                     if(badgeName == '') {
                         console.log("No badges");
                     } else {
-                        fileExt = ".png"
-                        path = "../../assets/badge/";
-                        badgesHtml = `
+                        console.log("user has badge")
+                        let fileExt = ".png"
+                        let path = "../../assets/badge/";
+                        let badgesHtml = `
                             <div>
                                 <img src="${path + badgeName + fileExt}" alt="badge">
                             </div>
@@ -79,7 +83,14 @@ $(document).ready(() => {
 
  
     })
-    
+
+    //edit page bttn
+    $("#editBttn").on('click', () => {
+        location.href = "?edit=true";  
+    })
+
+    // edit part
+
     
 })
 

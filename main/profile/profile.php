@@ -2,7 +2,9 @@
  include "../db_conn.php";
  
     session_start();
-
+    if(isset($_GET['edit'])) {
+        
+    }
     if(isset($_POST)) {
         if(isset($_FILES['profile'])){
             $file = $_FILES['profile'];
