@@ -1,7 +1,12 @@
 <?php 
     session_start();
-
-    if(isset($_SESSION['userId'])) {
+    $userCategory = (isset($_SESSION['usercategory'])) ? $_SESSION['usercategory'] : "category is not set";
+    //check if admin
+    if(isset($_SESSION['userId']) && $userCategory == 'admin') {
+        header("Location: ../admin/");
+    } 
+    // checks if login and a regular user
+    if(isset($_SESSION['userId']) && $userCategory == 'user') {
         $userId =  $_SESSION['userId'];
         $userProfilePath = (empty($_SESSION['userprofile'])) ? '' : $_SESSION['userprofile'];
         $profileBlankFlag = (empty($userProfilePath)) ? true : false;

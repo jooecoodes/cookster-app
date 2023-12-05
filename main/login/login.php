@@ -28,12 +28,12 @@
                             $sql = "UPDATE user SET token = '$token' WHERE id = " . $rows['id'];
                             mysqli_query($conn, $sql);
             
-                            
+                            // set sessions for the user
                             $_SESSION['userId'] = $rows["id"];
                             $_SESSION['userFlagPtIndicator'] = $rows["flagptindicator"];
                             $_SESSION['userGender'] = $rows['gender'];
                             $_SESSION['userprofile'] = $rows['userprofile'];
-                            
+                            $_SESSION['usercategory'] = $rows['usercategory'];
                            
                             echo "User login successfully";
                         }

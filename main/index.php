@@ -1,3 +1,12 @@
+<?php 
+    // check user is login
+    if(isset($_SESSION['userId'])) {
+        
+    } else {
+        include 'logged_out.php';
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

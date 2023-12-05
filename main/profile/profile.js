@@ -86,7 +86,7 @@ $(document).ready(() => {
 
     //edit page bttn
     $("#editBttn").on('click', () => {
-        location.href = "?edit=true";  
+        location.href = "edit-profile.php";  
     })
 
 
