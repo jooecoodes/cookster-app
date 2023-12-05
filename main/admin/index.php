@@ -2,26 +2,29 @@
 include '../db_conn.php';
 session_start();
 $userCategory = (isset($_SESSION['usercategory'])) ? $_SESSION['usercategory'] : "category is not set";
-//check if admin
-if (isset($_SESSION['userId']) && $userCategory == 'admin') {
-    $userCategoryToSelect = "user";
+// initiate empty array for users
+$userCategoryToSelect = "user";
+$users = array();
+// selects all users
+$stmt    = $conn->prepare("SELECT * FROM user WHERE usercategory = ?");
+$stmt->bind_param("s", $userCategoryToSelect);
+$stmt->execute();
+
+// check result
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    array_push($users, $row);
+}
+
+// close conn
+$conn->close();
+
+if(isset($_POST['dataIndex'])) {
+    $dataIndex = $_POST['dataIndex'];
+    $data = $users[$dataIndex];
+    echo json_encode($data);
+} else if (isset($_SESSION['userId']) && $userCategory == 'admin') {
     $userId = $_SESSION['userId'];
-    // initiate empty array for users
-    $users = array();
-    // selects all users
-    $stmt    = $conn->prepare("SELECT * FROM user WHERE usercategory = ?");
-    $stmt->bind_param("s", $userCategoryToSelect);
-    $stmt->execute();
-
-    // check result
-    $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()) {
-        array_push($users, $row);
-    }
-
-    // close conn
-    $conn->close();
-
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -55,11 +58,11 @@ if (isset($_SESSION['userId']) && $userCategory == 'admin') {
                 <?php
                 // loop through users
                 $index = 0;
-                foreach ($users as $user) { 
-             
+                foreach ($users as $user) {
 
-                    ?>
-                    
+
+                ?>
+
                     <tr>
                         <td><?= $user['id'] ?></td>
                         <td><?= $user['userprofile'] ?></td>
@@ -69,13 +72,14 @@ if (isset($_SESSION['userId']) && $userCategory == 'admin') {
                         <td><?= $user['lname'] ?></td>
                         <td><?= $user['gender'] ?></td>
                         <td><?= $user['dateregistration'] ?></td>
-                        <td><button class="edit-btn" data-index="<?= $index?>" data-userid="<?= $user['id'] ?>">Edit</button></td>
+                        <td><button class="edit-btn" data-index="<?= $index ?>" data-userid="<?= $user['id'] ?>">Edit</button></td>
                     </tr>
-                <?php $index++; } ?>
+                <?php $index++;
+                } ?>
             </tbody>
         </table>
         <div id="modal" style="display: none;">
-                Hello Test
+            Hello Test
         </div>
 
 
@@ -87,12 +91,6 @@ if (isset($_SESSION['userId']) && $userCategory == 'admin') {
 
 <?php
 
-
-    //handle additional requests from client
-    if(isset($_POST['getData'], $_POST['dataIndex']) && $_POST['getData'] == "success" ) {
-        $dataIndex = $_POST['dataIndex'];
-        echo json_encode($users[$dataIndex]);
-    }
 } else {
     echo "You're not an admin or not registered";
 }
