@@ -19,7 +19,7 @@ $(document).ready(() => {
   $("#modal").on("click", ".edit-btn-modal", function () {
     let dataKey = $(this).data('key');
     let userId = $("#user-id-hidden").val();
-    console.log(dataKey);
+    console.log(typeof dataKey);
     switch (dataKey) {
       case "uname":
         let unameFieldVal = $("#uname-modal").val();
@@ -28,7 +28,7 @@ $(document).ready(() => {
           url: "admin.php",
           data: { unameField: unameFieldVal, userId: userId},
           success: function (response) {
-
+            console.log(response);
           },
           error: function (error) {
             console.error("Error:", error);
@@ -42,8 +42,7 @@ $(document).ready(() => {
           url: "admin.php",
           data: { emailField: emailFieldVal, userId: userId },
           success: function (response) {
-            openModal(response);
-
+            console.log(response);
           },
           error: function (error) {
             console.error("Error:", error);
@@ -58,8 +57,7 @@ $(document).ready(() => {
           url: "admin.php",
           data: { pwdField: pwdFieldVal, userId: userId },
           success: function (response) {
-            openModal(response);
-
+            console.log(response);
           },
           error: function (error) {
             console.error("Error:", error);
@@ -73,8 +71,7 @@ $(document).ready(() => {
           url: "admin.php",
           data: { fnameField: fnameFieldVal, userId: userId },
           success: function (response) {
-            openModal(response);
-
+            console.log(response);
           },
           error: function (error) {
             console.error("Error:", error);
@@ -88,8 +85,7 @@ $(document).ready(() => {
           url: "admin.php",
           data: { lnameField: lnameFieldVal, userId: userId },
           success: function (response) {
-            openModal(response);
-
+            console.log(response);
           },
           error: function (error) {
             console.error("Error:", error);
