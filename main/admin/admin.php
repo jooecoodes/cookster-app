@@ -3,6 +3,17 @@ session_start();
 include '../db_conn.php';
 
 // handle requests
+if(isset($_FILES['video-content-form'])) {
+    if($_FILES['video-content-form']['error'] == 0){
+        
+    } else {
+        echo "Error sending file";
+    }
+}
+if(isset($_POST['deleteUser'])) {
+    $userId = (isset($_POST['userId'])) ? $_POST['userId'] : "user id not set";
+    deleteUser($conn, $userId);
+}
 if (isset($_POST['unameField'])) {
     $newUname = $_POST['unameField'];
     $userId = (isset($_POST['userId'])) ? $_POST['userId'] : 'user id not set';
@@ -45,7 +56,8 @@ function changeUname($conn, $userId, $newUname)
     $result = $stmt->get_result();
 
     if (mysqli_stmt_affected_rows($stmt) > 0) {
-        echo "Successfully edited uname'";
+        echo "Successfully edited uname";
+        echo $userId;
     } else {
         echo "No rows found";
     }
