@@ -173,7 +173,7 @@ $(document).ready(() => {
       processData: false,
       success: function(response) {
         // prints the response
-        console.log(response);
+        alert(response);
       },
       error: function(error) {
         // handle the error here

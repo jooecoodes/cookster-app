@@ -87,6 +87,8 @@ if(isset($_POST['dataIndex'])) {
         <form id="content-form">
                 <label for="videoField">Add the video</label>
                 <input type="file" name="video-content-form" accept="video/*" id="videoField">
+                <label for="question-article">Add question, separate with /n/n, followed by 4 choices separate with /q/q with answer /a/a in every end</label>
+                <textarea name="questionField" id="question-article" cols="30" rows="10"></textarea>
                 <label for="contentField">Add /n/n for the end of the paragraph</label>
                 <textarea name="content-article" id="contentField" cols="30" rows="10"></textarea>
                 <label for="categoryField">Add the category</label>
