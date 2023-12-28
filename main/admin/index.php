@@ -19,7 +19,7 @@ while ($row = $result->fetch_assoc()) {
 // close conn
 $conn->close();
 
-if(isset($_POST['dataIndex'])) {
+if (isset($_POST['dataIndex'])) {
     $dataIndex = $_POST['dataIndex'];
     $data = $users[$dataIndex];
     echo json_encode($data);
@@ -37,6 +37,13 @@ if(isset($_POST['dataIndex'])) {
         <script src="chart.js" defer></script>
         <script src="admin.js" defer></script>
         <link rel="stylesheet" href="../../styles/admin.css">
+        <style>
+            #articleContentForm {
+                display: flex;
+                flex-direction: column;
+            }
+
+        </style>
         <title>Document</title>
     </head>
 
@@ -82,24 +89,28 @@ if(isset($_POST['dataIndex'])) {
         <div id="modal" style="display: none;">
             Hello Test
         </div>
-    
-       <div class="content-form-wrapper">
-        <form id="content-form">
-                <label for="videoField">Add the video</label>
-                <input type="file" name="video-content-form" accept="video/*" id="videoField">
-                <label for="question-article">Add question, separate with /n/n, followed by 4 choices separate with /q/q with answer /a/a in every end</label>
-                <textarea name="questionField" id="question-article" cols="30" rows="10"></textarea>
+            
+        <div class="content-form-wrapper">
+            <form id="articleContentForm" action="upload_handler.php" method="POST">
+                <label for="videoIframeField">Video Iframe to embed</label>
+                <input type="text" name="video-iframe-article-container" id="videoIframeField">
+
                 <label for="contentField">Add /n/n for the end of the paragraph</label>
                 <textarea name="content-article" id="contentField" cols="30" rows="10"></textarea>
-                <label for="categoryField">Add the category</label>
-                <input type="text" name="category" id="categoryField">
-                <input type="submit" value="Submit" name="submit-btn-content-form">
-            </form>
-       </div>
 
-       
+                <select name="difficulty-article" id="difficultyField">
+                    <option value="easy">Easy</option>
+                    <option value="normal">Normal</option>
+                    <option value="hard">Hard</option>
+                </select>
+
+                <input type="hidden" name="submit-article-content-form" value="1">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
         <button id="logoutBttn">Log out</button>
-        
+
     </body>
 
     </html>
