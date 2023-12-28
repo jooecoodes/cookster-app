@@ -6,14 +6,34 @@
 
     $sqlSelection = "SELECT * FROM user WHERE id = '$userId'";
     $results = mysqli_query($conn, $sqlSelection);
+    $id = "";
+    $profile =  "";
+    $fname = "";
+    $lname =  "";
+    $name =  "";
+    $email =  "";
+    $gender = "";
+    $points = "";
+
     if(mysqli_num_rows($results) > 0) {
-        echo "Selection successful"
+        echo "Selection successful";
+        while($row = mysqli_fetch_assoc($results)) {
+            $id = $row['id'];
+            $profile = $row['userprofile'];
+            $fname = $row['fname'];
+            $lname = $row['lname'];
+            $name = $row['username'];
+            $email = $row['useremail'];
+            $gender = $row['gender'];
+            $points = $row['points'];
+        }
     } else {
         echo "Selection failed";
     }
     
     
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +43,22 @@
 </head>
 <body>
     <form action="upload_handler.php" method="POST">
-        <?php foreach(): ?>
-            <h1>Name:</h1>
-
-        <? endforeach; ?>
+       <h1>ID: </h1>
+       <?= $id ?>
+       <h1>Profile</h1>
+       <?= $profile ?>
+       <h1>First Name: </h1>
+       <?= $fname ?>
+       <h1>Last Name: </h1>
+       <?= $lname ?>
+       <h1>Username: </h1>
+       <?= $name ?>
+       <h1>Email:</h1>
+       <?= $email ?>
+       <h1>Gender:</h1>
+       <?= $gender ?>
+       <h1>Points: </h1>
+       <?= $points ?>
     </form>
 </body>
 </html>

@@ -87,7 +87,7 @@ if (isset($_POST['dataIndex'])) {
                         <td><?= $user['lname'] ?></td>
                         <td><?= $user['gender'] ?></td>
                         <td><?= $user['dateregistration'] ?></td>
-                        <td><a href="?user_id=<?= $user['id'] ?>">Edit</a></td>
+                        <td><a href="user.php?user_id=<?= $user['id'] ?>">Edit</a></td>
                     </tr>
                 <?php $index++;
                 } ?>
