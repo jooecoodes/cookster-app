@@ -21,7 +21,7 @@
             $dateRegistration = date("Y-m-d");
             $userEmail = $_POST['email'];
             $userPassword = $_POST['password'];
-            $insertionSql = "INSERT INTO user(useremail, userpassword, flagptindicator, dateregistration, fname, lname, gender) VALUES('$userEmail', '$userPassword', '1', '$dateRegistration', '$userFName', '$userLName', '$userGender')";
+            $insertionSql = "INSERT INTO user(useremail, userpassword, flagptindicator, dateregistration, fname, lname, gender, usercategory) VALUES('$userEmail', '$userPassword', '1', '$dateRegistration', '$userFName', '$userLName', '$userGender', 'user')";
             mysqli_query($conn, $insertionSql);
             echo "Insertion Completed";
             $conn->close();

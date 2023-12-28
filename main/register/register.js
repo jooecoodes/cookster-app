@@ -46,7 +46,7 @@ $(document).ready(() => {
               fnameFlag = true;
             } 
             if (response == "Fname is not ok") {
-              $("#fnameIndicator").text("First Name must not exceed 8 letters");
+              $("#fnameIndicator").text("First Name must not exceed 20 letters");
               fnameFlag = false;
             }
           }

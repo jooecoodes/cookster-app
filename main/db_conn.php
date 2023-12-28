@@ -2,7 +2,7 @@
     $host = "localhost";
     $username = "root";
     $password = "";
-    $database = "mathwiz_database";
+    $database = "cookster_database";
 
     $conn = mysqli_connect($host, $username, $password, $database);
 

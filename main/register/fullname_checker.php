@@ -19,7 +19,7 @@
 
 
     function isValidFullName($name) {
-        if (strlen($name) < 8) {
+        if (strlen($name) < 20) {
             return true;
         }
 

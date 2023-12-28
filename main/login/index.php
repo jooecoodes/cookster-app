@@ -1,8 +1,8 @@
 <?php 
     session_start();
-    if(isset($_SESSION['userId'])){
-        
-    ?>
+        if(isset($_SESSION['userId'])){
+            
+        ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>

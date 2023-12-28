@@ -1,11 +1,5 @@
 <?php 
-
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "mathwiz_database";
-
-    $conn = mysqli_connect($host, $username, $password, $database);
+require_once("../db_conn.php");
 
 
 if(isset($_POST['email'])) {
