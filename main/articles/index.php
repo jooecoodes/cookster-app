@@ -42,8 +42,8 @@ if (mysqli_num_rows($results) > 0) {
     <div id="article-container">
         <?php foreach ($results as $result) : ?>
             <div class="articles">
-                <a href="?<?= $result['id'] ?>">
-                    <p><?= $result['title']?></p>
+                <a href="article.php?id=<?= $result['id'] ?>">
+                    <h1><?= $result['title']?></h1>
                 </a>
                 <label for="">Dificulty: </label>
                 <p><?= $result['difficulty'] ?></p>
