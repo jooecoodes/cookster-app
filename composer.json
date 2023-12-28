@@ -12,6 +12,7 @@
         }
     ],
     "require": {
-        "tecnickcom/tcpdf": "^6.6"
+        "tecnickcom/tcpdf": "^6.6",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

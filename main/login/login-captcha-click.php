@@ -1,18 +1,17 @@
 <?php 
      session_start();
-    require_once("../../load_env.php");
-    require_once("../db_conn.php");
-     if (isset($_POST['submit_frm'])) {
+
+    include "../db_conn.php";
+ 
+     if (isset($_POST['email'])) {
         if(!empty($_POST['email']) && !empty($_POST['password'])) {
             if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-
-                $siteKey = $_ENV['CAPTCHA_SITE_KEY_V3'];
-                $secretKey = $_ENV['CAPTCHA_SECRET_KEY_V3'];
+                $siteKey = "6LfEiSIpAAAAAFKQy5YbTK7vMqMMOVbrMQMM64sr";
+                $secretKey = "6LfEiSIpAAAAALjOtDwhVAmf7ufahY0QRkRX0PmN";
                 $serverIp = $_SERVER['REMOTE_ADDR'];
                 $url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $secretKey . "&response=". $_POST['g-recaptcha-response'];
                 $request = file_get_contents($url);
                 $response = json_decode($request);
-                var_dump($response);
                 if($response->success) {
                     $userEmail = $_POST['email'];
                     $userPassword = $_POST['password'];
