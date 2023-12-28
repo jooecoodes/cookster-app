@@ -87,15 +87,13 @@ if (isset($_POST['dataIndex'])) {
                         <td><?= $user['lname'] ?></td>
                         <td><?= $user['gender'] ?></td>
                         <td><?= $user['dateregistration'] ?></td>
-                        <td><button class="edit-btn" data-index="<?= $index ?>" data-userid="<?= $user['id'] ?>">Edit</button></td>
+                        <td><a href="?user_id=<?= $user['id'] ?>">Edit</a></td>
                     </tr>
                 <?php $index++;
                 } ?>
             </tbody>
         </table>
-        <div id="modal" style="display: none;">
-            Hello Test
-        </div>
+   
 
         <h1>Content</h1>
         <div id="content-form-wrapper">
