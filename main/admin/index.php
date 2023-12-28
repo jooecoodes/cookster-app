@@ -92,6 +92,9 @@ if (isset($_POST['dataIndex'])) {
             
         <div class="content-form-wrapper">
             <form id="articleContentForm" action="upload_handler.php" method="POST">
+                <label for="">Title</label>
+                <input type="text" name="title-article" id="titleField">
+
                 <label for="videoIframeField">Video Iframe to embed</label>
                 <input type="text" name="video-iframe-article-container" id="videoIframeField">
 
