@@ -19,6 +19,9 @@ while ($row = $result->fetch_assoc()) {
 // close conn
 $conn->close();
 
+if (isset($_GET['num_q'])) {
+    $numOfQuestions = $_GET['num_q'];
+}
 if (isset($_POST['dataIndex'])) {
     $dataIndex = $_POST['dataIndex'];
     $data = $users[$dataIndex];
@@ -43,6 +46,10 @@ if (isset($_POST['dataIndex'])) {
                 flex-direction: column;
             }
 
+            #articleQuestionForm {
+                display: flex;
+                flex-direction: column;
+            }
         </style>
         <title>Document</title>
     </head>
@@ -89,8 +96,9 @@ if (isset($_POST['dataIndex'])) {
         <div id="modal" style="display: none;">
             Hello Test
         </div>
-            
-        <div class="content-form-wrapper">
+
+        <h1>Content</h1>
+        <div id="content-form-wrapper">
             <form id="articleContentForm" action="upload_handler.php" method="POST">
                 <label for="">Title</label>
                 <input type="text" name="title-article" id="titleField">
@@ -109,6 +117,31 @@ if (isset($_POST['dataIndex'])) {
 
                 <input type="hidden" name="submit-article-content-form" value="1">
                 <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <h1>Questions</h1>
+        <div id="question-form-wrapper">
+            <form action="" method="GET">
+                <label for="">Number Of Questions: </label>
+                <input type="number" name="num_q">
+                <input type="submit">
+            </form>
+            <form id="articleQuestionForm" action="upload_handler.php" method="POST">
+                <?php for ($i = 0; $i < $numOfQuestions; $i++) { ?>
+                    <label for="questionField">Question: </label>
+                    <input type="text" name="question<?= $i ?>" id="questionField">
+                    <label for="choicesFied">Choices: </label>
+                    <textarea name="choices<?= $i ?>" id="choicesField" cols="30" rows="10"></textarea>
+                    <label for="questionField">Answer: </label>
+                    <input type="text" name="answer<?= $i ?>" id="answerField">
+
+                   
+                   
+                <?php } ?>
+                <input type="hidden" name="num-of-questions" value="<?= $numOfQuestions ?>">
+                <input type="hidden" name="submit-article-quiz-form" value="1">
+                <input type="submit">
             </form>
         </div>
 
