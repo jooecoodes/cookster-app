@@ -6,10 +6,11 @@ $(document).ready(() => {
     let confPwdFlag = false;
 
     
-    $('#registrationForm').on('submit', (e) => {
+    $('#registrationForm').on('submit', function(e){
         e.preventDefault();
-  
+        var formData = new FormData(this);
         //Function Pass
+        let submitIdentifier = $("#submitIdentifier").val();
         let fname = $("#fname").val();
         let lname = $("#lname").val();
         let email = $('#email').val();
@@ -24,7 +25,7 @@ $(document).ready(() => {
           console.log(pwdFlag);
           console.log(confPwdFlag);
         } else {
-          register(email, pwd, fname, lname, gender);
+          register(formData);
         }
     })
 
@@ -209,26 +210,21 @@ function fieldCheck(fn, ln, em, pwd, confpwd) {
   return wrongIdentifier;
 }
 
-function register(userEmail, userPassword, userFName, userLName, userGender) {
+function register(formData) { 
+
   $.ajax({
     type: "POST",
     url: "register.php",
-    data: { 
-      email: userEmail, 
-      password: userPassword,
-      fname: userFName,
-      lname: userLName,
-      gender: userGender,
-    },
+    data: formData,
+    contentType: false,
+    processData: false,
     success: function(response) {
-        // Handle the server's response (e.g., show the next question)
-        console.log(response);
-        alert("User register successfully");
-        window.location.href = "../login/";
+      console.log(response);
+      alert("response");        
     },
     error: function(error) {
         console.error("Error:", error);
     }
-  })
+});
 }
 

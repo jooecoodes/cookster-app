@@ -74,7 +74,9 @@ if (isset($_POST['hiddenFname'])) {
 
 //lname 
 if (isset($_POST['hiddenLname'])) {
+    print_r($_POST);
     $newLname = (isset($_POST['newlname'])) ? $_POST['newlname'] : 'new lname not set';
+    print_r($newLname);
     $userId   = (isset($_SESSION['userId'])) ? $_SESSION['userId'] :  ' id not set';
     $pwd      = (isset($_POST['pwd'])) ? $_POST['pwd'] : 'pwd is not set';
     $stmt     = $conn->prepare("SELECT userpassword FROM user WHERE id = ? ");
@@ -158,7 +160,7 @@ function changeFname($conn, $userId, $newFname)
 // change lname
 function changeLname($conn, $userId, $newLname)
 {
-    $stmt = $conn->prepare("UPDATE user SET fname = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE user SET lname = ? WHERE id = ?");
     $stmt->bind_param("si", $newLname, $userId);
     $stmt->execute();
     $result = $stmt->get_result();

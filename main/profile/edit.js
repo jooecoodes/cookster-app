@@ -82,10 +82,11 @@ $(document).ready(() => {
         let newlname = $("#newLnameField").val();
         let pwd = $("#newPwdLnameField").val();
         let hidden = $("#hidden-lname").val();
+        console.log(newlname);
         $.ajax({
             type: "POST",
             url: "edit.php",
-            data: { newfname: newlname, pwd: pwd, hiddenLname: hidden},
+            data: { newlname: newlname, pwd: pwd, hiddenLname: hidden},
             success: function(response) {
             // Handle the server's response (e.g., show the next question)
             e.preventDefault();

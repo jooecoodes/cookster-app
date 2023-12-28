@@ -5,7 +5,6 @@
     } else {
         include 'logged_out.php';
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

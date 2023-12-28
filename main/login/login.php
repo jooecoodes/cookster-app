@@ -6,10 +6,10 @@
         if(!empty($_POST['email']) && !empty($_POST['password'])) {
             if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
 
-                $siteKey = $_ENV['CAPTCHA_SITE_KEY_V3'];
-                $secretKey = $_ENV['CAPTCHA_SECRET_KEY_V3'];
+                $siteKeyV3 = $_ENV['CAPTCHA_SITE_KEY_V3'];
+                $secretKeyV3 = $_ENV['CAPTCHA_SECRET_KEY_V3'];
                 $serverIp = $_SERVER['REMOTE_ADDR'];
-                $url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $secretKey . "&response=". $_POST['g-recaptcha-response'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $secretKeyV3 . "&response=". $_POST['g-recaptcha-response'];
                 $request = file_get_contents($url);
                 $response = json_decode($request);
                 var_dump($response);
@@ -35,7 +35,9 @@
                             $_SESSION['userGender'] = $rows['gender'];
                             $_SESSION['userprofile'] = $rows['userprofile'];
                             $_SESSION['usercategory'] = $rows['usercategory'];
-                           
+                            $_SESSION['userFname'] = $rows['fname'];
+                            $_SESSION['userLname'] = $rows['lname'];
+                            
                             echo "User login successfully";
                         }
                         $conn->close();
