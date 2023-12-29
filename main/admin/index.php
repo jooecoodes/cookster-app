@@ -18,7 +18,7 @@ while ($row = $result->fetch_assoc()) {
 
 // close conn
 $conn->close();
-
+$numOfQuestions = 0;
 if (isset($_GET['num_q'])) {
     $numOfQuestions = $_GET['num_q'];
 }

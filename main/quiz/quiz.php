@@ -1,13 +1,20 @@
-<?php 
-	header('Content-Type: text/html; charset=utf-8');
+<?php
+require_once("../db_conn.php");
+header('Content-Type: text/html; charset=utf-8');
+if (isset($_POST['submit-quiz-frm'])) {
+	$numOfQuestions = (isset($_POST['numOfQuiz'])) ? $_POST['numOfQuiz'] : "num of questions not set";
+	var_dump($_POST);
+	// var_dump($dataStorer);
+}
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>	
+
+<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../../styles/style.css">
+	<link rel="stylesheet" type="text/css" href="../../styles/style.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function() {
@@ -17,79 +24,69 @@
 		})
 	</script>
 </head>
-<body>
-    <div class="quiz-container">
-        <h1>Quiz Results</h1>
 
-        <?php
+<body>
+	<div class="quiz-container">
+		<h1>Quiz Results</h1>
+
+		<?php
 		$score = 0;
 
-		for ($i = 0; $i < 10; $i++) {
-			$questionKey = 'question' . $i;
-			$answerKey = 'answer' . $i;
-			$quizKey = 'quiz' . $i;
-			$indexPlusOne = $i + 1;
-			if(isset($_POST)){
-				if (isset($_POST[$questionKey], $_POST[$answerKey], $_POST[$quizKey])) {
-					$correctAnswer = htmlspecialchars($_POST[$answerKey]);
-					$userAnswer = htmlspecialchars($_POST[$questionKey]); 
-					$quiz =  htmlspecialchars($_POST[$quizKey]);
-					if ($_POST[$questionKey] == $_POST[$answerKey]) {
-						echo "
-						<p> Q{$indexPlusOne}: {$quiz}</p>
-						<div style=\"display: flex; width: 50%; justify-content: space-between; align-items: space-between; height: 50px\">
-							<img class=\"image\" src=\"../../assets/checked.png\" style=\"width 50%; height: 50px; object-fit: cover;\">
-							<p style=\" font-size: 16px;  width: 50%;\">{$userAnswer}</p>
-						</div>
-						<div style=\"display: flex; width: 50%; justify-content: space-between; align-items: space-between; height: 50px\">
-							<img class=\"image\" src=\"../../assets/correct.png\" style=\"width 50%; height: 50px; object-fit: cover;\">
-							<p style=\" font-size: 16px;  width: 50%;\">{$correctAnswer}</p>
-						</div>
-							";
-						$score++;
-						
-					} else {
-						echo "
-						<p>Q{$indexPlusOne}: {$quiz}</p>
-						<div style=\"display: flex; width: 50%; justify-content: space-between; align-items: space-between; height: 50px \">
-							<img class=\"image\" src=\"../../assets/cross.png\" style=\"width 50%; height: 50px; object-fit: cover; \">
-							<p style=\" font-size: 16px; width: 50%;\">{$userAnswer}</p>
-						</div>
-						<div style=\"display: flex; width: 50%; justify-content: space-between; align-items: space-between; height: 50px\">
-							<img class=\"image\" src=\"../../assets/correct.png\" style=\"width 50%; height: 50px; object-fit: cover;\">
-							<p style=\" font-size: 16px;  width: 50%;\">{$correctAnswer}</p>
-						</div>
-							";
-					}  
-				} else {
-					// If $userAnswer is not set, you should initialize it before using it to avoid undefined variable notice
-					$userAnswer = isset($_POST[$questionKey]) ? htmlspecialchars($_POST[$questionKey]) : 'Not answered';
-					$quiz =  isset($_POST[$quizKey]) ? htmlspecialchars($_POST[$quizKey]) : "Question Not Found";
-					$correctAnswer = isset($_POST[$answerKey]) ? htmlspecialchars($_POST[$answerKey]) : "Answer Not Found";
-					echo "
-					<p>Q{$indexPlusOne}: {$quiz}</p>
-						<div style=\"display: flex; width: 50%; justify-content: space-between; align-items: space-between; height: 50px\">
-							<img class=\"image\" src=\"../../assets/question.png\" style=\"width 50%; height: 50px;  object-fit: cover;\">
-							<p style=\" font-size: 16px; width: 50%;\">{$userAnswer}</p>
-						</div>
-						<div style=\"display: flex; width: 50%; justify-content: space-between; align-items: space-between; height: 50px\">
-							<img class=\"image\" src=\"../../assets/correct.png\" style=\"width 50%; height: 50px; object-fit: cover;\">
-							<p style=\" font-size: 16px;  width: 50%;\">{$correctAnswer}</p>
-						</div>
-							";
+		?>
+
+		<?php for ($i = 0; $i < $numOfQuestions; $i++) : ?>
+			<?php
+			$choice = (isset($_POST["choice{$i}"])) ?  $_POST["choice{$i}"] : "No answer";
+			$questionId = $_POST["questionId{$i}"];
+			$sqlSelectQuiz = "SELECT * FROM quiz WHERE id='$questionId'";
+			$results = mysqli_query($conn, $sqlSelectQuiz);
+
+			$dataStorer = [];
+			if (mysqli_num_rows($results)) {
+				while ($row = mysqli_fetch_assoc($results)) {
+					$dataStorer[] = $row;
 				}
 			}
-			
-		}
+
+			var_dump($dataStorer);
+			?>
+
+			<h1>Q<?= $i ?></h1>
+			<p><?= $_POST["question{$i}"] ?></p>
+
+			<?php if (!isset($_POST["choice{$i}"])){ ?>
+				<img src="../../assets/question.png" alt="question-mark">
+				<p>No answer </p>
+				<img src="../../assets/correct.png" alt="correct-mark">
+				<p><?= $dataStorer[0]["answer"] ?></p>
+			<?php }else if (trim($dataStorer[0]["answer"]) == trim($choice)) { ?>
+				<?php $score++; ?>
+				<img src="../../assets/checked.png" alt="correct-mark">
+				<p><?= $choice ?></p>
+				<img src="../../assets/correct.png" alt="correct-mark">
+				<p><?= $dataStorer[0]["answer"] ?></p>
+			<?php } else { ?>
+				<img src="../../assets/cross.png" alt="cross-mark">
+				<p> <?= $choice ?></p>
+				<img src="../../assets/correct.png" alt="correct-mark">
+				<p> <?= $dataStorer[0]["answer"] ?></p>
+			<?php } ?>
+
+		<?php endfor; ?>
+
+		<?php
+
+
 		if (isset($_POST['unfinished'])) {
 			echo "<p>Your time is up!</p>";
 		}
-		 echo "<p>Your score: $score / 10 </p>";
-        ?>
-		
+		echo "<p>Your score: $score / $numOfQuestions </p>";
+		?>
+
 		<button id="playAgainBttn">Play again<button>
-		
-    </div>
-	
+
+	</div>
+
 </body>
+
 </html>

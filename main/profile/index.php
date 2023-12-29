@@ -4,6 +4,7 @@ $userCategory = (isset($_SESSION['usercategory'])) ? $_SESSION['usercategory'] :
 //check if admin
 if (isset($_SESSION['userId']) && $userCategory == 'admin') {
     header("Location: ../admin/");
+    die;
 }
 // checks if login and a regular user
 if (isset($_SESSION['userId']) && $userCategory == 'user') {
@@ -60,7 +61,7 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
 <?php
 
 } else {
-    include "../logged_out.php";
+    header("Location: ../login/");
     echo "logged out";
 }
 

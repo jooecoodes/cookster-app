@@ -52,6 +52,7 @@ if (isset($_SESSION['userId']) && $userCategory == 'admin') {
             <?= $id ?>
             <h1>Profile</h1>
             <?= $profile ?>
+            <img src="../../assets/profile/<?= $profile ?>" alt="">
             <form action="edit_handler.php" method="POST">
                 <input type="hidden" name="userId" value="<?= $userId ?>">
                 <input type="file" name="new-profile">
