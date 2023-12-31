@@ -62,7 +62,6 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
 
 } else {
     header("Location: ../login/");
-    echo "logged out";
 }
 
 

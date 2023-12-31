@@ -12,35 +12,12 @@ if (isset($_SESSION['userId'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(() => {
-                $("#logoutBttn").on("click", () => {
-                    $.ajax({
-                        type: "POST",
-                        url: "../logout.php",
-                        data: {},
-                        success: function(response) {
-                            location.reload();
-                            console.log("user logged out");
-
-                        },
-                        error: function(error) {
-
-                            console.error("Error:", error);
-
-                        },
-                    })
-
-                })
-
-            })
-        </script>
         <title>Document</title>
     </head>
 
     <body>
         <p>You're already logged in</p>
-        <button id="logoutBttn">Log out</button>
+        <a href="../logout.php">Log out</a>
     </body>
 
     </html>

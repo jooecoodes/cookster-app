@@ -1,7 +1,9 @@
 <?php
 require_once("../db_conn.php");
+session_start();
 
-$sqlSelectAllContent = "SELECT * FROM articles";
+if(isset($_SESSION['userId'])) {
+    $sqlSelectAllContent = "SELECT * FROM articles";
 $results = mysqli_query($conn, $sqlSelectAllContent);
 if (mysqli_num_rows($results) > 0) {
     echo "Successfully selected all content";
@@ -53,3 +55,8 @@ if (mysqli_num_rows($results) > 0) {
 </body>
 
 </html>
+<?php 
+} else {
+    header("Location: ../login/");
+}
+

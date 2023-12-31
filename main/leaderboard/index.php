@@ -1,7 +1,8 @@
 <?php
 require_once("../db_conn.php");
-
-$selectionSql = "SELECT * FROM user ORDER BY points DESC";
+session_start();
+if(isset($_SESSION['userId'])) {
+    $selectionSql = "SELECT * FROM user ORDER BY points DESC";
 $result = mysqli_query($conn, $selectionSql);
 
 $dataStorer = [];
@@ -57,3 +58,8 @@ if (mysqli_num_rows($result) > 0) {
 </body>
 
 </html>
+
+<?php
+} else {
+    header("Location: ../login/");
+}
