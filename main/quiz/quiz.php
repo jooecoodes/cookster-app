@@ -1,11 +1,13 @@
 <?php
 require_once("../db_conn.php");
 header('Content-Type: text/html; charset=utf-8');
+
 if (isset($_POST['submit-quiz-frm'])) {
 	$numOfQuestions = (isset($_POST['numOfQuiz'])) ? $_POST['numOfQuiz'] : "num of questions not set";
 	var_dump($_POST);
 	// var_dump($dataStorer);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +83,20 @@ if (isset($_POST['submit-quiz-frm'])) {
 			echo "<p>Your time is up!</p>";
 		}
 		echo "<p>Your score: $score / $numOfQuestions </p>";
+		
+		$points = $_POST['maxTime'] - ($_POST['maxTime'] - $_POST['timeLeft']) + ($score * 20);
+
+		// update points in the database
+		$stmt = $conn->prepare("UPDATE user SET points = ? WHERE id = ? ");
+		$stmt->bind_param("ii", $points, $_POST['userId']);
+		$result = $stmt->execute();
+		if($result) {
+			echo "Data updated successfully";
+		} else {
+			echo "Data update failed";
+		}
+		
+		echo "<p> You gained: $points";
 		?>
 
 		<button id="playAgainBttn">Play again<button>

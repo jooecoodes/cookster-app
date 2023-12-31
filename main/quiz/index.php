@@ -1,8 +1,12 @@
 <?php
 require_once("../db_conn.php");
+session_start();
 
-$sqlSelectQuiz = "SELECT * FROM quiz";
+if(isset($_SESSION['userId'])) {
+ 
+    $sqlSelectQuiz = "SELECT * FROM quiz";
 $result = mysqli_query($conn, $sqlSelectQuiz);
+$maxtime = 30;
 
 $dataStorer = [];
 if (mysqli_num_rows($result) > 0) {
@@ -25,7 +29,7 @@ if (mysqli_num_rows($result) > 0) {
     <link rel="stylesheet" type="text/css" href="../../styles/style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script defer>
-        let timeLeft = 2;
+        let timeLeft = <?= $maxtime ?>;
         var timer = setInterval(function() {
             $("#timer").text(`Time Left: ${timeLeft} s`)
             timeLeft--;
@@ -60,6 +64,8 @@ if (mysqli_num_rows($result) > 0) {
                         <label for="choiceFied"><?= $choice ?></label>
                     <?php endforeach; ?>
                 <?php endfor; ?>
+                <input type="hidden" name="maxTime" value="<?= $maxtime ?>">
+                <input type="hidden" name="userId" value="<?= (isset($_SESSION['userId'])) ? $_SESSION['userId'] : "no id";?>">
                 <input type="hidden" name="timeLeft" id="timeLeftField">
                 <input type="hidden" name="numOfQuiz" value="<?= count($dataStorer) ?>">
                 <input type="hidden" name="submit-quiz-frm" value="1">
@@ -72,3 +78,7 @@ if (mysqli_num_rows($result) > 0) {
 </body>
 
 </html>
+ <?php
+} else {
+    header("Location: ../login/");
+}
