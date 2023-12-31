@@ -6,9 +6,7 @@ if (isset($_POST['submit-quiz-frm'])) {
 	$numOfQuestions = (isset($_POST['numOfQuiz'])) ? $_POST['numOfQuiz'] : "num of questions not set";
 	var_dump($_POST);
 	// var_dump($dataStorer);
-}
-
-?>
+	?>
 
 <!DOCTYPE html>
 <html>
@@ -97,12 +95,22 @@ if (isset($_POST['submit-quiz-frm'])) {
 		}
 		
 		echo "<p> You gained: $points";
+
+		//update user points in the session 
+		$_SESSION['userPoints'] = $points;
 		?>
 
+
 		<button id="playAgainBttn">Play again<button>
+		
 
 	</div>
 
 </body>
 
 </html>
+<?php 
+} else {
+	echo "You can't just skip like that, please finish the quiz first";
+}
+
