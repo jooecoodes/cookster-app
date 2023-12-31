@@ -43,6 +43,10 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
 
     <body>
         <p>Hello, <?= $_SESSION['userFname'] . " " . $_SESSION['userLname'];?> </p>
+        <div>
+            <img src="../../assets/star.png" alt="star">
+            <span><?= $_SESSION['userPoints']; ?></span>
+        </div>
         <img src="<?php echo "../../assets/profile/" . $userProfile ?>" alt="profile">
         <h1>Badges:</h1>
         <div id="displayBadges">

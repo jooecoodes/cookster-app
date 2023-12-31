@@ -37,8 +37,9 @@
                             $_SESSION['usercategory'] = $rows['usercategory'];
                             $_SESSION['userFname'] = $rows['fname'];
                             $_SESSION['userLname'] = $rows['lname'];
+                            $_SESSION['userPoints'] = $rows['points'];
                             
-                            echo "User login successfully";
+                            header("Location: ../profile/");
                         }
                         $conn->close();
                     } else {

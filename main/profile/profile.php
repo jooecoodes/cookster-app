@@ -49,6 +49,7 @@
                         echo "Successfully moved file";
                         
                         $counter++;
+                        header("Location: index.php");
                     } else {
                         echo "File is too big";
                     }

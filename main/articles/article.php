@@ -35,5 +35,6 @@
             <?= $content ?>
         </article>
     </div>
+    <a href="delete_article.php?id=<?= $id ?>">Delete</a>
 </body>
 </html>

@@ -40,7 +40,6 @@ if (isset($_SESSION['userId'])) {
     </head>
 
     <body>
-        <?= $_ENV['CAPTCHA_SITE_KEY_V3']; ?>
         <form id="loginForm" action="login.php" method="post">
             <input type="text" name="email" id="email">
             <p id="emailIndicator"></p>
