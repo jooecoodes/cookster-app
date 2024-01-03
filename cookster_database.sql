@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2023 at 11:34 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jan 03, 2024 at 09:04 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `articles` (
   `video` text NOT NULL,
   `content` text NOT NULL,
   `difficulty` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `articles`
@@ -54,7 +54,7 @@ CREATE TABLE `quiz` (
   `question` text NOT NULL,
   `choices` varchar(255) NOT NULL,
   `answer` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `quiz`
@@ -86,7 +86,7 @@ CREATE TABLE `user` (
   `dateregistration` date DEFAULT NULL,
   `flagptindicator` tinyint(1) DEFAULT NULL,
   `usercategory` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -96,7 +96,7 @@ INSERT INTO `user` (`token`, `id`, `badges`, `userprofile`, `useremail`, `gender
 ('', 1, '', NULL, 'dmsad@gmail.com', NULL, '', '', 'okay\r\n', 'ssample', 12, '', NULL, 1, 'user'),
 ('9409b587374c6fc6309487cef95c645c', 2, '', NULL, 'try@gmail.com', NULL, '', '', 'okayokay', 'charlie123123', 7, NULL, NULL, NULL, 'user'),
 ('', 3, '', NULL, 'okkaayo@gmail.com', NULL, '', '', 'omaewamou', 'asidasdadsadasd', 4, NULL, NULL, NULL, 'user'),
-('a355bacc1243940985adc7e429957a38', 4, 'beta-tester-badge,verified-badge', 'user=4.jpg', 'clarito@gmail.com', NULL, 'nick', 'clarito', 'clarito123', 'clarito@123', 13, NULL, NULL, NULL, 'admin'),
+('90170b61b99658a0a9e16d657b3fb7a7', 4, 'beta-tester-badge,verified-badge', 'user=4.jpg', 'clarito@gmail.com', NULL, 'nick', 'clarito', 'clarito123', 'clarito@123', 13, NULL, NULL, NULL, 'admin'),
 ('', 15, '', NULL, 'asd2@gmail.com', NULL, '', '', '', 'jefeljoe@', 0, NULL, '2023-11-20', 1, 'user'),
 ('', 16, '', NULL, 'asd@yahoo.com', NULL, 'ff', 'as', '', 'asd@yahoo.com', 0, NULL, '2023-11-20', 1, 'user'),
 ('', 17, '', NULL, 'jefeljoevillacorta@gmail.com', NULL, 'Albert', 'Swift', '', 'hoho@12345', 0, NULL, '2023-11-24', 1, 'user'),
@@ -114,8 +114,7 @@ INSERT INTO `user` (`token`, `id`, `badges`, `userprofile`, `useremail`, `gender
 ('', 29, '', NULL, 'asdasdasdasd@gmail.com', 'lol', 'asdasd', 'asdasd', '', 'asdasdasdasd@', 0, NULL, '2023-11-29', 1, 'user'),
 ('', 30, '', NULL, 'helloworld@gmail.com', 'male', 'hello', 'world', '', 'helloworld@', 0, NULL, '2023-11-29', 1, 'user'),
 ('e92f7db0b837a91ee5c2ecefb2036d22', 31, '', NULL, 'jefjoe@gmail.com', 'lol', 'Jefel', 'Joe', '', 'Jefeljoe@villacorta', 0, NULL, '2023-12-28', 1, 'user'),
-('', 32, '', NULL, 'helloworld2@gmail.com', 'male', 'Hello2', 'World2', '', 'hello@world', 0, NULL, '2023-12-28', 1, 'user'),
-('922a9ab5168cbe2135a425d841f4901d', 33, '', NULL, 'mikeytyson@gmail.com', NULL, 'mikey', 'tyson', '', 'mikey@tyson', 0, NULL, '2023-12-28', 1, 'user');
+('', 32, '', NULL, 'helloworld2@gmail.com', 'male', 'Hello2', 'World2', '', 'hello@world', 0, NULL, '2023-12-28', 1, 'user');
 
 --
 -- Indexes for dumped tables
