@@ -1,0 +1,28 @@
+
+// theme
+
+$secondary-color: #A64724;
+$primary-color: #BF4226;
+$tertiary-color: #F2D3AC;
+$quaternary-color: #8C6645;
+$quinary-color: #F2F1E9;
+
+// fonts
+@font-face {
+    font-family: 'Amsterdam Four';
+    src: url('../fonts/alex-brush/AlexBrush-Regular.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: 
+    url('../fonts/open-sans/OpenSans-Bold.ttf') format('truetype'),
+    url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format('truetype'),
+    url('../fonts/open-sans/OpenSans-ExtraBold.ttf') format('truetype'),
+    url('../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-size: normal;
+}
+
