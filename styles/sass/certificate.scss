@@ -1,0 +1,37 @@
+@import "partials/theme-setup";
+
+
+#element {
+    position: relative;
+}
+
+#certificate {
+    height: 794px;
+    width: 1123px;
+}
+
+#center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    position: absolute;
+    top: 7em;
+    /* Adjust to position the name vertically */
+    left: 9.4em;
+    /* Adjust to position the name horizontally */
+    font-size: 24px;
+    /* Adjust font size as needed */
+    color: black;
+    /* Adjust text color as needed */
+}
+
+#fullName {
+    color: $senary-color;
+    font-family: "Amsterdam Four", sans-serif;
+    font-weight: normal;
+    font-size: 3rem;
+   
+}

@@ -1,121 +1,100 @@
 @font-face {
-  font-family: "Amsterdam Four";
+  font-family: 'Amsterdam Four';
   src: url("../fonts/alex-brush/AlexBrush-Regular.ttf") format("truetype");
   font-weight: normal;
-  font-style: italic;
-}
+  font-style: italic; }
+
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   src: url("../fonts/open-sans/OpenSans-Bold.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-BoldItalic.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-ExtraBold.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf") format("truetype");
   font-weight: bold;
-  font-size: normal;
-}
+  font-size: normal; }
+
 * {
   margin: 0;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
-  background-color: #F2F1E9;
-}
-body nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.4em;
-  background-color: #BF4226;
-}
-body nav #division-1 div {
-  width: 150px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-body nav #division-1 div img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-body nav #division-1 div p {
-  font-family: "Open Sans", sans-serif;
-  color: #F2F1E9;
-  font-size: 1.3rem;
-}
-body nav #division-2 div {
-  width: 150px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-body nav #division-2 div a {
-  text-decoration: none;
-  color: #F2F1E9;
-}
-body #form-division {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-}
-body #form-division form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #BF4226;
-  width: 30%;
-  height: 50%;
-}
-body #form-division form input {
-  padding: 20px;
-  margin: 5px;
-}
-body #form-division form #fullName {
-  margin-left: 10px;
-  width: 80%;
-  display: flex;
-}
-body #form-division form #fullName input {
-  width: 100%;
-}
-body #form-division form #emailDiv, body #form-division form #passwordDiv {
-  width: 80%;
-}
-body #form-division form #emailDiv input, body #form-division form #passwordDiv input {
-  width: 99%;
-  margin: 10px;
-}
-body #form-division form #genderSubmitDiv {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-body #form-division form #genderSubmitDiv #gender-division #gender-option {
-  display: flex;
-}
-body #form-division form #genderSubmitDiv #gender-division #gender-option div {
-  display: flex;
-  justify-content: space-between;
-  width: 500px;
-}
-body #form-division form #genderSubmitDiv #optional-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body #form-division form #genderSubmitDiv #recaptcha {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body #form-division form #genderSubmitDiv #submit-bttn-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/*# sourceMappingURL=register.css.map */
+  background-color: #F2F1E9; }
+  body nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4em;
+    background-color: #BF4226; }
+    body nav #division-1 div {
+      width: 150px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+      body nav #division-1 div img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%; }
+      body nav #division-1 div p {
+        font-family: "Open Sans", sans-serif;
+        color: #F2F1E9;
+        font-size: 1.3rem; }
+    body nav #division-2 div {
+      width: 150px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+      body nav #division-2 div a {
+        text-decoration: none;
+        color: #F2F1E9; }
+  body #form-division {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh; }
+    body #form-division form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #BF4226;
+      width: 30%;
+      height: 50%; }
+      body #form-division form input {
+        padding: 20px;
+        margin: 5px; }
+      body #form-division form #fullName {
+        margin-left: 10px;
+        width: 80%;
+        display: flex; }
+        body #form-division form #fullName input {
+          width: 100%; }
+      body #form-division form #emailDiv,
+      body #form-division form #passwordDiv {
+        width: 80%; }
+        body #form-division form #emailDiv input,
+        body #form-division form #passwordDiv input {
+          width: 99%;
+          margin: 10px; }
+      body #form-division form #genderSubmitDiv {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; }
+        body #form-division form #genderSubmitDiv #gender-division #gender-option {
+          display: flex; }
+          body #form-division form #genderSubmitDiv #gender-division #gender-option div {
+            display: flex;
+            justify-content: space-between;
+            width: 500px; }
+        body #form-division form #genderSubmitDiv #optional-div {
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+        body #form-division form #genderSubmitDiv #recaptcha {
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+        body #form-division form #genderSubmitDiv #submit-bttn-div {
+          display: flex;
+          justify-content: center;
+          align-items: center; }
