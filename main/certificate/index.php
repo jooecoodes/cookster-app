@@ -24,8 +24,8 @@ if (isset($_SESSION['userId'])) {
                 <img src="../../assets/certificates/certificate-of-achievement.png" alt="certificate" id="certificate">
                 <p id="fullName"><?= $fullName ?></p>
             </div> 
-            <p>You have successfully completed our program, Congratulations!</p>
         </div>
+        <p>You have successfully completed our program, Congratulations!</p>
 
         <script>
             var element = document.getElementById("element");

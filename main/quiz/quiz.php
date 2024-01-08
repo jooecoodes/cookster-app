@@ -5,6 +5,7 @@ session_regenerate_id();
 header('Content-Type: text/html; charset=utf-8');
 
 if (isset($_POST['submit-quiz-frm'])) {
+	$pastPoints = $_SESSION['userPoints'];
 	$numOfQuestions = (isset($_POST['numOfQuiz'])) ? $_POST['numOfQuiz'] : "num of questions not set";
 	var_dump($_POST);
 	// var_dump($dataStorer);
@@ -100,7 +101,7 @@ if (isset($_POST['submit-quiz-frm'])) {
 			echo "<p> You gained: $points";
 
 			//update user points in the session 
-			$_SESSION['userPoints'] = $points;
+			$_SESSION['userPoints'] = $pastPoints + $points;
 
 			if ($points > $perfectScore) {
 			?>
