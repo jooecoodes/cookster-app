@@ -44,16 +44,19 @@ $(document).ready(() => {
             console.log(response);
             if(response == "Fname is ok"){
               $("#fnameIndicator").text("First Name is fine");
+              $("#fname").css("border-color", "green")
               fnameFlag = true;
             } 
             if (response == "Fname is not ok") {
               $("#fnameIndicator").text("First Name must not exceed 20 letters");
+              $("#fname").css("border-color", "red")
               fnameFlag = false;
             }
           }
         });
       } else {
         $("#fnameIndicator").text("");
+        $("#fname").css("border-color", "")
         fnameFlag = false;
       }
    });
@@ -71,16 +74,19 @@ $(document).ready(() => {
             console.log("success response")
             if(response == "Lname is ok"){
               $("#lnameIndicator").text("Last Name is fine");
+              $("#lname").css("border-color", "green")
               lnameFlag = true;
             } 
             if (response == "Lname is not ok") {
               $("#lnameIndicator").text("Last Name must not exceed 8 letters");
+              $("#lname").css("border-color", "red")
               lnameFlag = false;
             }
           }
         });
       } else {
         $("#lnameIndicator").text("");
+        $("#lname").css("border-color", "")
         lnameFlag = false;
       }
    });
@@ -99,11 +105,15 @@ $(document).ready(() => {
           if(response == "Full name is already taken") {
             $("#fnameIndicator").text("Full name is already taken")
             $("#lnameIndicator").text("Full name is already taken")
+            $("#fname").css("border-color", "red")
+            $("#lname").css("border-color", "red")
             fnameFlag = false;
             lnameFlag = false;
           } else {
             $("#fnameIndicator").text("Full name is not registered")
             $("#lnameIndicator").text("Full name is not registered")
+            $("#fname").css("border-color", "green")
+            $("#lname").css("border-color", "green")
             fnameFlag = true;
             lnameFlag = true;
           }
@@ -125,21 +135,24 @@ $(document).ready(() => {
               console.log(response);
               if(response == "userexist"){
                 $("#emailIndicator").text("Email is already registered.");
+                $("#email").css("border-color", "red");
                 emailFlag = false;
               } 
               if(response == "Email is valid") {
                 $("#emailIndicator").text("Email is available.");
+                $("#email").css("border-color", "green");
                 emailFlag = true;
               } 
               if(response == "Email is invalid"){
+                $("#email").css("border-color", "red");
                 $("#emailIndicator").text("Invalid Email");
                 emailFlag = false;
               }
-             
             }
           });
         } else {
           $("#emailIndicator").text("");
+          $("#email").css("border-color", "");
           emailFlag = false;
         }
      });
@@ -154,15 +167,18 @@ $(document).ready(() => {
             success: function(response){
               if(response == true){
                 $("#pwdIndicator").text("Password is strong");
+                $("#password").css("border-color", "green");
                 pwdFlag = true;
               } else {
                 $("#pwdIndicator").text("Password must be at least 8 character and it should contain special characters such as /[!@#$%^&*(),.?");
+                $("#password").css("border-color", "red");
                 pwdFlag = false;
               }
             }
           });
         } else {
           $("#pwdIndicator").text("");
+          $("#password").css("border-color", "");
           pwdFlag = false;
         }
      });
@@ -174,13 +190,16 @@ $(document).ready(() => {
         if(confpwd.length > 0){
             if(confpwd == pwd) {
                 $('#confPwdIndicator').text("Password match");
+                $("#confPassword").css("border-color", "green");
                 confPwdFlag = true;
             } else {
                 $('#confPwdIndicator').text("Password doesn't match");
+                $("#confPassword").css("border-color", "red");
                 confPwdFlag = false;
             }
         } else {
           $("#confPwdIndicator").text("");
+          $("#confPassword").css("border-color", "");
           confPwdFlag = false;
         }
      });

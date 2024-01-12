@@ -1,143 +1,103 @@
 @import "partials/theme-setup";
 @import "partials/config";
+@import "partials/nav";
 
 body {
-  background-color: $quinary-color;
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.4em;
-    background-color: $primary-color;
+  height: 100vh;
+  weight: 100vw;
+  position: relative;
+  background-image: url("../../assets/background/image-background-register.jpg");
+  background-size: cover;
 
-    #division-1 {
-      div {
-        width: 150px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-
-        img {
-          width: 50px;
-          height: 50px;
-          object-fit: cover;
-          border-radius: 50%;
-        }
-
-        p {
-          font-family: "Open Sans", sans-serif;
-          color: $quinary-color;
-          font-size: 1.3rem;
-        }
-      }
-    }
-
-    #division-2 {
-      div {
-        width: 150px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        a {
-          text-decoration: none;
-          color: $quinary-color;
-        }
-      }
-    }
-  }
+  // nav
+  @extend .nav-design;
 
   // form
+  form {
+    position: absolute;
+    top: 23%;
+    right: 36%;
+    box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+    background-color: $quinary-color;
+    border-radius: 20px;
+    width: 45em;
+    height: 40em;
+    padding-left: 9em;
 
-  #form-division {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color: $primary-color;
-      width: 30%;
-      height: 50%;
-      input {
-        padding: 20px;
-        margin: 5px;
-      }
-      #fullName {
-        margin-left: 10px;
-        width: 80%;
-        display: flex;
-        input {
-          width: 100%;
-        }
-      }
-      #emailDiv,
-      #passwordDiv {
-        width: 80%;
-        input {
-          width: 99%;
-          margin: 10px;
-        }
+    
+
+    div {
+      h1 {
+        margin-top: 1.5em;
+        margin-left: 2em;
+        margin-bottom: 1em;
       }
 
+
+      .line-dash {
+        width: 100%;
+        height: 1px;
+        background-color: gray;
+      }
+      
       #genderSubmitDiv {
-        #gender-division {
-          #gender-option {
-            display: flex;
-            div {
-              display: flex;
-              justify-content: space-between;
-              width: 500px;
-            }
-          }
-        }
-        width: 80%;
+        margin-left: 15px;
+        width: 70%;
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
 
-        #optional-div {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        #recaptcha {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        #submit-bttn-div {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+      #fullName {
+        display: flex;
+        input {
+          width: 33%;
         }
       }
-      //   input {
-      //     padding: 15px;
-      //     width: 70em;
-      //     margin: 5px;
-      //   }
 
-      //   #gender-division {
-      //     width: 25%;
-      //     display: flex;
-      //   }
-      //   #gender-option-submit-div {
-      //     width: 55em;
-      //     display: flex;
-      //     justify-content: start;
-      //     align-items: start;
-      //     flex-direction: column;
-      //       #submitBttn {
-      //         color: black;
-      //         width: 10em;
-      //       }
+      #optional-div {
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-      //   }
+      #alrhvanacc-label {
+        margin-top: 12px;
+      }
+
+      //gender
+
+      #gender-option {
+        display: flex;
+        width: 70%;
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 70%;
+        }
+      }
+      input {
+        padding: 10px;
+        margin: 10px;
+        width: 70%;
+      }
+
+      #submitBttn {
+        cursor: pointer;
+        width: 15em;
+        height: 3.5em;
+        background-color: $primary-color;
+        border-radius: 19px;
+        border: none;
+        margin-top: 23px;
+      }
+
+      a {
+        margin-bottom: 10px;
+      }
     }
   }
 }

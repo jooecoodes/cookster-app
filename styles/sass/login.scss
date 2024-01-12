@@ -1,0 +1,86 @@
+@import "partials/theme-setup";
+@import "partials/config";
+@import "partials/nav";
+
+body {
+  //nav
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  @extend .nav-design;
+
+  background-image: url('../../assets/background/image-background-login.jpg');
+  background-size: cover;
+
+
+  main {
+ 
+    form {
+
+      h1 {
+        margin-bottom: 10px;
+      }
+      box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+
+      position: absolute;
+      top: 30%;
+      right: 36%;
+      background-color: $quinary-color;
+      width: 35em;
+      height: 25em;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      
+
+      .left-flexer {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 70%;
+        margin-top: 5px;
+      }
+
+      #line-flexer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        div {
+          flex: 1;
+        }
+        label {
+          margin-left: 2px;
+          margin-right: 2px;
+        }
+      }
+
+      .line-dash {
+        width: 100%;
+        height: 1px;
+        background-color: gray;
+      }
+      
+     
+      
+      input {
+        padding: 10px;
+        margin: 10px;
+        width: 70%;
+        
+      }
+
+      button {
+        cursor: pointer;
+        width: 15em;
+        height: 3.5em;
+        background-color: $primary-color;
+        border-radius: 19px;
+        border: none;
+        margin-top: 23px;
+      }
+    }
+  }
+}
