@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION['userId'])) {
-    $fname = $_SESSION['userFname'];
-    $lname = $_SESSION['userLname'];
+    $fname = (isset($_SESSION['userFname'])) ? $_SESSION['userFname'] : "user fname not set";
+    $lname = (isset($_SESSION['userLname'])) ? $_SESSION['userLname'] : "user lname not set";
 
     $fullName = $fname . " " . $lname;
 ?>
@@ -25,8 +25,6 @@ if (isset($_SESSION['userId'])) {
                 <p id="fullName"><?= $fullName ?></p>
             </div> 
         </div>
-        <p>You have successfully completed our program, Congratulations!</p>
-
         <script>
             var element = document.getElementById("element");
 
