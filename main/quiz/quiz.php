@@ -4,6 +4,8 @@ session_start();
 session_regenerate_id();
 header('Content-Type: text/html; charset=utf-8');
 
+$userCategory = (isset( $_SESSION['usercategory'])) ?  $_SESSION['usercategory'] : "user category not set";
+
 if (isset($_POST['submit-quiz-frm'])) {
 	$pastPoints = $_SESSION['userPoints'];
 	$numOfQuestions = (isset($_POST['numOfQuiz'])) ? $_POST['numOfQuiz'] : "num of questions not set";
@@ -86,12 +88,13 @@ if (isset($_POST['submit-quiz-frm'])) {
 			echo "<p>Your score: $score / $numOfQuestions </p>";
 			
 			
-			$points = $pastPoints + ($_POST['maxTime'] - ($_POST['maxTime'] - $_POST['timeLeft']) + ($score * 20));
-			$perfectScore = 30;
+			$pointsFromQuiz = $pastPoints + ($_POST['maxTime'] - ($_POST['maxTime'] - $_POST['timeLeft']) + ($score * 20));
+			$userOverallPoints = $pastPoints + $pointsFromQuiz;
+			$perfectScore = $_POST['maxTime'] + ($numOfQuestions * 20);
 
 			// update points in the database
 			$stmt = $conn->prepare("UPDATE user SET points = ? WHERE id = ? ");
-			$stmt->bind_param("ii", $points, $_POST['userId']);
+			$stmt->bind_param("ii", $userOverallPoints, $_POST['userId']);
 			$result = $stmt->execute();
 			if ($result) {
 				echo "Data updated successfully";
@@ -99,12 +102,14 @@ if (isset($_POST['submit-quiz-frm'])) {
 				echo "Data update failed";
 			}
 
-			echo "<p> You gained: $points";
+			echo "<p> You gained: $userOverallPoints";
 
+			echo "Perfect score $perfectScore";
 			//update user points in the session 
-			$_SESSION['userPoints'] = $points;
+			$_SESSION['userPoints'] = $userOverallPoints;
 
-			if ($points > $perfectScore) {
+			if ($pointsFromQuiz >= $perfectScore) {
+				
 			?>
 				<p>You have earned a certificate</p>
 				<a href="../certificate/">Get certificate</a>
