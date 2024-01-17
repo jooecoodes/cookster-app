@@ -22,7 +22,6 @@
                         $userGender = isset($_POST['gender']) ? htmlspecialchars($_POST['gender']) : '';
                         $selectionSql = "SELECT * FROM user WHERE useremail = '$userEmail' AND userpassword = '$userPassword'";
                         $result = mysqli_query($conn, $selectionSql);
-                        var_dump($_POST);
                 
                         if(mysqli_num_rows($result) > 0) {
                             echo "User is already registered";

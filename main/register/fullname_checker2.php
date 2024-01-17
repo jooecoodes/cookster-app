@@ -6,9 +6,11 @@
         $selectSql = "SELECT * FROM user WHERE fname='$fnameFromCheck' AND lname='$lnameFromCheck'";
         $result = mysqli_query($conn, $selectSql);
                 if(mysqli_num_rows($result) > 0) {
-                    echo "Full name is already taken";
+                    // Full name is already taken
+                    echo "2";
                 } else {
-                    echo "Full name is ok";
+                    // Full name is ok
+                    echo "1";
                 }
     }
 

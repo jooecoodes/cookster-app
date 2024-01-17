@@ -85,10 +85,10 @@ if (isset($_POST['submit-quiz-frm'])) {
 			if (isset($_POST['unfinished'])) {
 				echo "<p>Your time is up!</p>";
 			}
-			echo "<p>Your score: $score / $numOfQuestions </p>";
+			echo "<p>Your corrects: $score / $numOfQuestions </p>";
 			
 			
-			$pointsFromQuiz = $pastPoints + ($_POST['maxTime'] - ($_POST['maxTime'] - $_POST['timeLeft']) + ($score * 20));
+			$pointsFromQuiz = (($_POST['maxTime'] - ($_POST['maxTime'] - $_POST['timeLeft'])) + ($score * 20));
 			$userOverallPoints = $pastPoints + $pointsFromQuiz;
 			$perfectScore = $_POST['maxTime'] + ($numOfQuestions * 20);
 
@@ -102,7 +102,7 @@ if (isset($_POST['submit-quiz-frm'])) {
 				echo "Data update failed";
 			}
 
-			echo "<p> You gained: $userOverallPoints";
+			echo "<p> You gained: $pointsFromQuiz";
 
 			echo "Perfect score $perfectScore";
 			//update user points in the session 

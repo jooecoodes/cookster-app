@@ -9,12 +9,15 @@ if(isset($_POST['email'])) {
     $identifier = verifyEmail($userEmail);
 
     if(mysqli_num_rows($result) > 0) {
-        echo "userexist";
+        // email already exists
+        echo "3";
     } else {
         if($identifier) {
-            echo "Email is valid";
+            // email is valid
+            echo "1";
          } else {
-             echo "Email is invalid";
+            // email is invalid
+             echo "2";
          }
     }
     

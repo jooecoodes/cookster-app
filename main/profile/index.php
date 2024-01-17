@@ -1,5 +1,7 @@
 <?php
+require_once("../db_conn.php");
 session_start();
+
 $userCategory = (isset($_SESSION['usercategory'])) ? $_SESSION['usercategory'] : "category is not set";
 //check if admin
 if (isset($_SESSION['userId']) && $userCategory == 'admin') {
@@ -8,6 +10,7 @@ if (isset($_SESSION['userId']) && $userCategory == 'admin') {
 }
 // checks if login and a regular user
 if (isset($_SESSION['userId']) && $userCategory == 'user') {
+
     $userId =  $_SESSION['userId'];
     $userProfilePath = (empty($_SESSION['userprofile'])) ? '' : $_SESSION['userprofile'];
     $profileBlankFlag = (empty($userProfilePath)) ? true : false;
@@ -60,7 +63,27 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
                     </div>
                     <div id="dividerUpperLeftSide2">
                         <img src="../../assets/star.png" alt="star" id="starImage">
-                        <span><?= $_SESSION['userPoints']; ?></span>
+                        <?php
+                        // update score in the session from db
+                        $userPoints = 0;
+                        $sqlSelectPoints = "SELECT points FROM user WHERE id = ?";
+                        $stmtSelectPoints = $conn->prepare($sqlSelectPoints);
+                        $stmtSelectPoints->bind_param("i", $_SESSION['userId']);
+                        $stmtSelectPoints->execute();
+
+                        $result = $stmtSelectPoints->get_result();
+                        $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+                        if (!empty($rows)) {
+                            foreach ($rows as $row) {
+                                $userPoints = $row['points'];
+                            }
+                        }
+
+                        $_SESSION['userPoints'] = $userPoints;
+
+                        ?>
+                        <span><?= $_SESSION['userPoints'] ?></span>
                     </div>
 
                 </div>
@@ -68,8 +91,8 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
                     <h1>Badges:</h1>
                     <div id="displayBadges">
                     </div>
-    
-    
+
+
                     <button id="badgeBttn">Retrieve Badges</button>
                     <button id="logoutBttn">Log out</button>
 

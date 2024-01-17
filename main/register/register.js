@@ -91,7 +91,7 @@ $(document).ready(() => {
       }
    });
 
-
+   // check full name
    $("#lname").on("blur", () => {
     console.log("blur executed");    
     let fnameVal = $("#fname").val();
@@ -102,7 +102,9 @@ $(document).ready(() => {
         url: 'fullname_checker2.php',
         data: {checkfullname: true, fname: fnameVal, lname: lnameVal},
         success: function(response){
-          if(response == "Full name is already taken") {
+          console.log(response);
+          let responseInt = parseInt(response);
+          if(responseInt == 2) {
             $("#fnameIndicator").text("Full name is already taken")
             $("#lnameIndicator").text("Full name is already taken")
             $("#fname").css("border-color", "red")
@@ -133,17 +135,22 @@ $(document).ready(() => {
             data: {email: email},
             success: function(response){
               console.log(response);
-              if(response == "userexist"){
+              let responseInt = parseInt(response);
+              if(responseInt == "3"){
+                console.log(responseInt);
+                console.log("Email is already registered.")
                 $("#emailIndicator").text("Email is already registered.");
                 $("#email").css("border-color", "red");
                 emailFlag = false;
               } 
-              if(response == "Email is valid") {
+              if(responseInt == "1") {
+                console.log("Email is available.");
                 $("#emailIndicator").text("Email is available.");
                 $("#email").css("border-color", "green");
                 emailFlag = true;
               } 
-              if(response == "Email is invalid"){
+              if(responseInt == "2"){
+                console.log("Invalid Email");
                 $("#email").css("border-color", "red");
                 $("#emailIndicator").text("Invalid Email");
                 emailFlag = false;
@@ -190,16 +197,16 @@ $(document).ready(() => {
         if(confpwd.length > 0){
             if(confpwd == pwd) {
                 $('#confPwdIndicator').text("Password match");
-                $("#confPassword").css("border-color", "green");
+                $("#confpwd").css("border-color", "green");
                 confPwdFlag = true;
             } else {
                 $('#confPwdIndicator').text("Password doesn't match");
-                $("#confPassword").css("border-color", "red");
+                $("#confpwd").css("border-color", "red");
                 confPwdFlag = false;
             }
         } else {
           $("#confPwdIndicator").text("");
-          $("#confPassword").css("border-color", "");
+          $("#confpwd").css("border-color", "");
           confPwdFlag = false;
         }
      });
@@ -239,7 +246,7 @@ function register(formData) {
     processData: false,
     success: function(response) {
       console.log(response);
-      alert("response");        
+      alert(response);        
     },
     error: function(error) {
         console.error("Error:", error);

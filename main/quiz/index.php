@@ -3,9 +3,22 @@ require_once("../db_conn.php");
 session_start();
 
 $userCategory = (isset($_SESSION['usercategory'])) ?  $_SESSION['usercategory'] : "user category not set";
-
-
+$quizIndicator = 0;
 if (isset($_SESSION['userId'])) {
+    // take the user id
+
+    $stmtSelectValidation = $conn->prepare("SELECT quiz_indicator FROM user WHERE id = ? ");
+    $stmtSelectValidation->bind_param("i", $_SESSION['userId']);
+    $stmtSelectValidation->execute();
+    $result = $stmtSelectValidation->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    if (!empty($rows)) {
+        foreach ($rows as $row) {
+            $quizIndicator = $row['quiz_indicator'];
+        }
+    }
+
 
     $sqlSelectQuiz = "SELECT * FROM quiz";
     $result = mysqli_query($conn, $sqlSelectQuiz);
@@ -67,9 +80,9 @@ if (isset($_SESSION['userId'])) {
                             <input type="radio" name="choice<?= $i ?>" class="choiceField<?= $i ?>" value="<?= $choice ?>">
                             <label for="choiceFied"><?= $choice ?></label>
                         <?php endforeach; ?>
-                        <?php if($userCategory == "admin") { ?>
-                        <a href="delete_quiz.php?quizId=<?= $dataStorer[$i]['id'] ?>">Delete Quiz</a>
-                        <?php }?>                        
+                        <?php if ($userCategory == "admin") { ?>
+                            <a href="delete_quiz.php?quizId=<?= $dataStorer[$i]['id'] ?>">Delete Quiz</a>
+                        <?php } ?>
                     <?php endfor; ?>
                     <input type="hidden" name="maxTime" value="<?= $maxtime ?>">
                     <input type="hidden" name="userId" value="<?= (isset($_SESSION['userId'])) ? $_SESSION['userId'] : "no id"; ?>">

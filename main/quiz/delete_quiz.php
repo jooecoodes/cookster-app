@@ -7,7 +7,6 @@
         $stmtDelete = $conn->prepare($sqlDeleteQuiz);
         $stmtDelete->bind_param("i", $quizId);
 
-
         $stmtDelete->execute();
 
 
