@@ -1,19 +1,19 @@
 @font-face {
-  font-family: "Amsterdam Four";
+  font-family: 'Amsterdam Four';
   src: url("../fonts/alex-brush/AlexBrush-Regular.ttf") format("truetype");
   font-weight: normal;
-  font-style: italic;
-}
+  font-style: italic; }
+
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   src: url("../fonts/open-sans/OpenSans-Bold.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-BoldItalic.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-ExtraBold.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf") format("truetype");
   font-weight: bold;
-  font-size: normal;
-}
+  font-size: normal; }
+
 * {
   margin: 0;
   box-sizing: border-box;
-}
+  color: whitesmoke; }
 
 .nav-design nav, body nav {
   box-shadow: 20px 20px 60px black, -20px -20px 60px black;
@@ -22,110 +22,123 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
-}
-.nav-design nav #division-1 div, body nav #division-1 div {
-  width: 150px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.nav-design nav #division-1 div img, body nav #division-1 div img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.nav-design nav #division-1 div p, body nav #division-1 div p {
-  font-family: "Open Sans", sans-serif;
-  color: #F2F1E9;
-  font-size: 1.3rem;
-}
-.nav-design nav #division-2, body nav #division-2 {
-  width: 35%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.nav-design nav #division-2 div, body nav #division-2 div {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.nav-design nav #division-2 div a, body nav #division-2 div a {
-  text-decoration: none;
-  color: #F2F1E9;
-}
+  height: 65px; }
+  .nav-design nav #division-1 div, body nav #division-1 div {
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
+    .nav-design nav #division-1 div img, body nav #division-1 div img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%; }
+    .nav-design nav #division-1 div p, body nav #division-1 div p {
+      font-family: "Open Sans", sans-serif;
+      color: #F2F1E9;
+      font-size: 1.3rem; }
+  .nav-design nav #division-2, body nav #division-2 {
+    width: 35%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .nav-design nav #division-2 div, body nav #division-2 div {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+      .nav-design nav #division-2 div a, body nav #division-2 div a {
+        text-decoration: none;
+        color: #F2F1E9; }
 
 body {
-  font-family: "Open Sans", sans-serif;
   color: white;
   background-color: beige;
   background-image: url(../../assets/background/image-background-profile.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-}
-body main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 75vh;
-}
-body main #containerProfile {
-  padding: 50px;
-  width: 50%;
-  height: 80%;
-  background-color: blue;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-body main #containerProfile #starImage {
-  width: 50px;
-  height: 50px;
-}
-body main #containerProfile #userProfile {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-}
-body main #containerProfile #profileUpperLeftSide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 50%;
-  height: 50%;
-  background-color: green;
-}
-body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide {
-  margin: 5px;
-  padding: 20px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  background-color: aqua;
-  width: 100%;
-}
-body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide #dividerEditProfile {
-  display: flex;
-  flex-direction: column;
-}
-body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide #dividerEditProfile img, body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide #dividerEditProfile button {
-  margin: 5px;
-}
-body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide2 {
-  width: 100%;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-body main #containerProfile #profileLowerLeftSide {
-  margin-top: 30px;
-  display: flex;
-}
-
-/*# sourceMappingURL=profile.css.map */
+  height: 100vh; }
+  body main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh; }
+    body main #containerProfile {
+      padding: 50px;
+      width: 50%;
+      height: 80%;
+      background-color: #BF4226;
+      box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: start; }
+      body main #containerProfile #starImage {
+        width: 50px;
+        height: 50px; }
+      body main #containerProfile #userProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%; }
+      body main #containerProfile #profileUpperLeftSide {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 50%;
+        height: 50%;
+        background-color: #A64724;
+        border-radius: 20px; }
+        body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide {
+          margin: 5px;
+          padding: 20px;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          width: 100%; }
+          body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide #greeting-text {
+            margin-left: 50px;
+            margin-bottom: 20px; }
+          body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide #dividerEditProfile {
+            display: flex;
+            flex-direction: column; }
+            body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide #dividerEditProfile img, body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide #dividerEditProfile button {
+              margin: 5px; }
+        body main #containerProfile #profileUpperLeftSide #dividerUpperLeftSide2 {
+          width: 100%;
+          display: flex;
+          justify-content: start;
+          align-items: center; }
+      body main #containerProfile #profileLowerLeftSide {
+        padding: 20px;
+        width: 50%;
+        height: 50%;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        background-color: #A64724;
+        border-radius: 20px; }
+        body main #containerProfile #profileLowerLeftSide #badgeBttn {
+          width: 45%;
+          height: 100%;
+          border-radius: 20px;
+          background-color: #BF4226;
+          border: none;
+          color: white;
+          cursor: pointer; }
+        body main #containerProfile #profileLowerLeftSide #logoutBttn {
+          width: 45%;
+          height: 100%;
+          border-radius: 20px;
+          background-color: #BF4226;
+          border: none;
+          color: white;
+          cursor: pointer; }
+        body main #containerProfile #profileLowerLeftSide #buttons-profile-badge-logout {
+          display: flex;
+          width: 50%;
+          height: 20%;
+          justify-content: space-around;
+          align-items: center; }

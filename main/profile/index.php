@@ -54,11 +54,10 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
                 <div id="profileUpperLeftSide">
                     <div id="dividerUpperLeftSide">
                         <div id="dividerEditProfile">
-                            <img src="<?php echo "../../assets/profile/" . $userProfile ?>" alt="profile" id="userProfile">
-                            <button id="editBttn">Edit Profile </button>
+                            <a href="edit-profile.php"><img src="<?php echo "../../assets/profile/" . $userProfile ?>" alt="profile" id="userProfile"></a>
                         </div>
 
-                        <p>Hello, <?= $_SESSION['userFname'] . " " . $_SESSION['userLname']; ?> </p>
+                        <p id="greeting-text">Hello, <?= $_SESSION['userFname'] . " " . $_SESSION['userLname']; ?> </p>
 
                     </div>
                     <div id="dividerUpperLeftSide2">
@@ -91,11 +90,11 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
                     <h1>Badges:</h1>
                     <div id="displayBadges">
                     </div>
-
-
-                    <button id="badgeBttn">Retrieve Badges</button>
-                    <button id="logoutBttn">Log out</button>
-
+                    <div id="buttons-profile-badge-logout">
+                        <button id="badgeBttn">Retrieve Badges</button>
+                        <button id="logoutBttn">Log out</button>
+                    </div>
+                    
                 </div>
 
 

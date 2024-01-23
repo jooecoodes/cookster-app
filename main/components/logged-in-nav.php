@@ -11,7 +11,7 @@
             <a href="../articles/">Articles</a>
             <a href="../leaderboard/">Leaderboard</a>
             <a href="../quiz/">Quiz</a>
-
+            <a href="../profile/">Profile</a>
         </div>
     </div>
 

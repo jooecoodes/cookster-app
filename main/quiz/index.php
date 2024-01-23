@@ -44,6 +44,7 @@ if (isset($_SESSION['userId'])) {
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../../styles/style.css">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../../styles/css/quiz.css">
         <script defer>
             let timeLeft = <?= $maxtime ?>;
             var timer = setInterval(function() {
@@ -57,44 +58,68 @@ if (isset($_SESSION['userId'])) {
                 }
             }, 1000);
         </script>
+
     </head>
 
     <body>
-        <div class="quiz-container">
-            <h1>Online Quiz</h1>
-            <h1 id="timer"></h1>
-            <form action="quiz.php" method="POST" id="quizForm">
+        <header>
+            <?php include "../components/logged-in-nav.php" ?>
+        </header>
+        <main>
+            <div id="quiz-container">
+                <div id="upper-title-part-quiz">
+                    <h1>Online Quiz</h1>
+                    <h1 id="timer"></h1>
+                </div>
+                <div id="centerer">
 
-                <!-- quiz part  -->
+                    <div id="quiz-form-container">
 
-                <?php for ($i = 0; $i < count($dataStorer); $i++) : ?>
-                    <div class="questions">
-                        <?php
-                        $choices = explode(",", $dataStorer[$i]['choices']);
-                        ?>
-                        <input type="hidden" name="questionId<?= $i ?>" value="<?= $dataStorer[$i]['id'] ?>">
-                        <input type="hidden" name="question<?= $i ?>" value="<?= $dataStorer[$i]['question'] ?>">
-                        <h2>Q<?= ($i + 1) ?></h2>
-                        <p><?= $dataStorer[$i]['question'] ?></p>
-                        <?php foreach ($choices as $choice) : ?>
-                            <input type="radio" name="choice<?= $i ?>" class="choiceField<?= $i ?>" value="<?= $choice ?>">
-                            <label for="choiceFied"><?= $choice ?></label>
-                        <?php endforeach; ?>
-                        <?php if ($userCategory == "admin") { ?>
-                            <a href="delete_quiz.php?quizId=<?= $dataStorer[$i]['id'] ?>">Delete Quiz</a>
-                        <?php } ?>
-                    <?php endfor; ?>
-                    <input type="hidden" name="maxTime" value="<?= $maxtime ?>">
-                    <input type="hidden" name="userId" value="<?= (isset($_SESSION['userId'])) ? $_SESSION['userId'] : "no id"; ?>">
-                    <input type="hidden" name="timeLeft" id="timeLeftField">
-                    <input type="hidden" name="numOfQuiz" value="<?= count($dataStorer) ?>">
-                    <input type="hidden" name="submit-quiz-frm" value="1">
-                    <input type="submit">
+                        <form action="quiz.php" method="POST" id="quizForm">
+
+                            <!-- quiz part  -->
+
+                            <?php for ($i = 0; $i < count($dataStorer); $i++) : ?>
+                                <div class="questions">
+                                    <?php
+                                    $choices = explode(",", $dataStorer[$i]['choices']);
+                                    ?>
+                                    <input type="hidden" name="questionId<?= $i ?>" value="<?= $dataStorer[$i]['id'] ?>">
+                                    <input type="hidden" name="question<?= $i ?>" value="<?= $dataStorer[$i]['question'] ?>">
+                                    <div id="question-part">
+                                        <h2>Q<?= ($i + 1) ?></h2>
+                                        <p><?= $dataStorer[$i]['question'] ?></p>
+                                    </div>
+
+                                    <div id="choices-part">
+                                        <?php foreach ($choices as $choice) : ?>
+                                            <div id="choices">
+
+                                                <input type="radio" name="choice<?= $i ?>" class="choiceField<?= $i ?>" value="<?= $choice ?>">
+                                                <label for="choiceFied"><?= $choice ?></label>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        <?php if ($userCategory == "admin") { ?>
+                                            <a href="delete_quiz.php?quizId=<?= $dataStorer[$i]['id'] ?>">Delete Quiz</a>
+                                        <?php } ?>
+                                    </div>
+                                <?php endfor; ?>
+                                <input type="hidden" name="maxTime" value="<?= $maxtime ?>">
+                                <input type="hidden" name="userId" value="<?= (isset($_SESSION['userId'])) ? $_SESSION['userId'] : "no id"; ?>">
+                                <input type="hidden" name="timeLeft" id="timeLeftField">
+                                <input type="hidden" name="numOfQuiz" value="<?= count($dataStorer) ?>">
+                                <input type="hidden" name="submit-quiz-frm" value="1">
+                                <div id="submit-bttn-quiz">
+                                    <input type="submit" id="submitBttn">
+                                </div>
+
+                                </div>
+                        </form>
                     </div>
+                </div>
 
-            </form>
-
-        </div>
+            </div>
+        </main>
     </body>
 
     </html>

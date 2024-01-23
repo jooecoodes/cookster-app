@@ -1,7 +1,9 @@
 @import "partials/theme-setup";
 @import "partials/config";
 @import "partials/nav";
-
+* {
+  color: black;
+}
 body {
   //nav
   position: relative;

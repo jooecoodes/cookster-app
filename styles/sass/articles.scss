@@ -1,0 +1,80 @@
+@import "partials/theme-setup";
+@import "partials/config";
+@import "partials/logged-in-nav";
+
+body {
+  @extend .nav-design;
+
+  background-image: url("../../assets/background/image-background-articles.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 80vh;
+
+    #article-main-container {
+      background-color: $primary-color;
+      border-radius: 20px;
+      box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+      width: 50%;
+      height: 80%;
+      padding: 25px;
+      #article-container {
+        max-height: 100%;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+          width: 0.1em;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
+      }
+      #search-place {
+        background-color: $secondary-color;
+        margin-bottom: 10px;
+        padding: 20px;
+        border-radius: 20px;
+        #searchBarField {
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            background-color: $quinary-color;
+            color: black;
+        }
+        #difficultyField {
+            color: black;
+            
+        }
+        #submitBttn {
+            background-color: $primary-color;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        #searchBarField {
+            outline: none;
+        }
+      }
+      #article-place {
+        background-color: $secondary-color;
+        padding: 20px;
+        border-radius: 20px;
+        height: 85%;
+        .articles {
+          background-color: $quaternary-color;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+}

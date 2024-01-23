@@ -5,7 +5,6 @@
 body {
     //nav
     @extend .nav-design;
-    font-family: "Open Sans", sans-serif;
     color: white;
     background-color: beige;
     background-image: url(../../assets/background/image-background-profile.jpg);
@@ -23,22 +22,26 @@ body {
             padding: 50px;
             width: 50%;
             height: 80%;
-            background-color: blue;
+            background-color: $primary-color;
+            box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: start;
+
             #starImage {
                 width: 50px;
                 height: 50px;
             }
 
             #userProfile {
-                width: 75px;
-                height: 75px;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
             }
 
             #profileUpperLeftSide {
+                padding: 20px;
              
                 display: flex;
                 justify-content: center;
@@ -46,18 +49,25 @@ body {
                 flex-direction: column;
                 width: 50%;
                 height: 50%;
-                background-color: green ;
+                background-color: $secondary-color ;
+                border-radius: 20px;
+                
+
                 #dividerUpperLeftSide {
                     margin: 5px;
                     padding: 20px;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-                    background-color: aqua;
                     width: 100%;
+                    #greeting-text {
+                        margin-left: 50px;
+                        margin-bottom: 20px;
+                    }
                     #dividerEditProfile {
                         display: flex;
                         flex-direction: column;
+                  
                         img, button {
                             margin: 5px;
                         }
@@ -74,8 +84,41 @@ body {
             }
             
             #profileLowerLeftSide {
+                padding: 20px;
+                width: 50%;
+                height: 50%;
                 margin-top: 30px;
                 display: flex;
+                flex-direction: column;
+                background-color: $secondary-color;
+                border-radius: 20px;
+                #badgeBttn {
+                    width: 45%;
+                    height: 100%;
+                    border-radius: 20px;
+                    background-color: $primary-color;
+                    border: none;
+                    color: white;  
+                    cursor: pointer;
+                }
+                #logoutBttn {
+                    width: 45%;
+                    height: 100%;
+                    border-radius: 20px;
+                    background-color: $primary-color;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                }
+                #buttons-profile-badge-logout {
+                    
+                    display: flex;
+                    width: 50%;
+                    height: 20%;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+
             }
 
         }

@@ -1,7 +1,9 @@
 @import "partials/theme-setup";
 @import "partials/config";
 @import "partials/nav";
-
+* {
+  color: black;
+}
 body {
   height: 100vh;
   weight: 100vw;

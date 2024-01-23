@@ -1,0 +1,46 @@
+@import "partials/theme-setup";
+@import "partials/config";
+@import "partials/logged-in-nav";
+body {
+  @extend .nav-design;
+
+  background-image: url("../../assets/background/image-background-leaderboard.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: white;
+    #table-container {
+        
+    width: 60%;
+     max-height: 80%; /* Adjust the height as needed */
+      overflow-y: auto;
+      background-color: $primary-color;
+      box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+      &::-webkit-scrollbar {
+        width: 0.1em;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
+    }
+    #leaderboardTable {
+        border-collapse: collapse;
+        width: 100%;
+    
+    }
+    th, td {
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+      }
+  
+      th {
+        background-color: $primary-color;
+      }
+  }
+}

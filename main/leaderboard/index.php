@@ -29,36 +29,47 @@ if (isset($_SESSION['userId'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <title>Document</title>
+        <title>Leaderboard</title>  
+        <link rel="stylesheet" href="../../styles/css/leaderboard.css">
     </head>
 
     <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Ranking</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php for ($i = 0; $i < count($dataStorer); $i++) : ?>
-                    <?php
-                        $userFullName = $dataStorer[$i]['fname'] . " " . $dataStorer[$i]['lname'];
+        <header>
+            <?php include "../components/logged-in-nav.php"?>
 
-                    ?>
-                    <tr>
-                        <td><?= $i ?></td>
-                        <td><?= $userFullName ?></td>
-                        <td><?= $dataStorer[$i]['useremail'] ?></td>
-                        <td><?= $dataStorer[$i]['points'] ?></td>
-                    </tr>
+        </header>
+        <main>
+            <div id="table-container">
+                <table id="leaderboardTable">
+                    <thead>
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                        <?php for ($i = 0; $i < count($dataStorer); $i++) : ?>
+                            <?php
+                                $userFullName = $dataStorer[$i]['fname'] . " " . $dataStorer[$i]['lname'];
+        
+                            ?>
+                            <tr>
+                                <td><?= $i ?></td>
+                                <td><?= $userFullName ?></td>
+                                <td><?= $dataStorer[$i]['useremail'] ?></td>
+                                <td><?= $dataStorer[$i]['points'] ?></td>
+                            </tr>
+        
+                        <?php endfor; ?>
+        
+                    </tbody>
+                </table>
 
-                <?php endfor; ?>
-
-            </tbody>
-        </table>
+            </div>
+        </main>
     </body>
 
     </html>

@@ -26,15 +26,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../styles/css/articles-article.css">
 </head>
 <body>
-    <div id="article-container">
-        <h1><?= $title ?></h1>
-        <?= $video ?>
-        <article>
-            <?= $content ?>
-        </article>
-    </div>
-    <a href="delete_article.php?id=<?= $id ?>">Delete</a>
+    <header>
+        <?php include "../components/logged-in-nav.php"?>
+    </header>
+    <main>
+        <div id="article-container">
+            <h1><?= $title ?></h1>
+            <?= $video ?>
+            <article>
+            <div class="flexer">
+                <?php 
+                    $paragraphs = explode("~`~`~", $content);
+                    
+                    foreach($paragraphs as $paragraph) {
+                        ?>
+                        
+                            <p> <?= $paragraph?></p>
+                      
+                        <?php
+                    }
+                
+                ?>
+                  </div>
+                
+        
+            </article>
+            <a href="delete_article.php?id=<?= $id ?>">Delete</a>
+            <a href="index.php">Back</a>
+        </div>
+       
+    </main>
 </body>
 </html>

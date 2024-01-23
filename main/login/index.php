@@ -40,7 +40,7 @@ if (isset($_SESSION['userId'])) {
             }
         </script>
         <script src="login.js"></script>
-        <title>Document</title>
+        <title>Sign in</title>
     </head>
 
     <body>

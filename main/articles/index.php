@@ -25,8 +25,6 @@ if (isset($_SESSION['userId'])) {
             $dataStorer[] = $row;
         }
     }
-    
-
 
 ?>
     <!DOCTYPE html>
@@ -36,6 +34,7 @@ if (isset($_SESSION['userId'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <link rel="stylesheet" href="../../styles/css/articles.css">
         <style>
             #article-container {
                 display: flex;
@@ -46,33 +45,45 @@ if (isset($_SESSION['userId'])) {
     </head>
 
     <body>
-        <form action="" method="GET">
-            <label for="searchBarField">Search: </label>
-            <input type="text" name="search-bar-field" id="searchBarField">
-            <label for="difficultyField">Difficulty: </label>
-            <select name="difficulty-field" id="difficultyField">
-                <option value="easy">Easy</option>
-                <option value="normal">Normal</option>
-                <option value="hard">Hard</option>
-            </select>
+        <header>
+            <?php include "../components/logged-in-nav.php"; ?>
+        </header>
+        <main>
+            <div id="article-main-container">
+                <div id="search-place">
+                    <form action="" method="GET">
+                        <label for="searchBarField">Search: </label>
+                        <input type="text" name="search-bar-field" id="searchBarField">
+                        <label for="difficultyField">Difficulty: </label>
+                        <select name="difficulty-field" id="difficultyField">
+                            <option value="easy">Easy</option>
+                            <option value="normal">Normal</option>
+                            <option value="hard">Hard</option>
+                        </select>
 
-            <input type="submit">
-        </form>
-        <div id="article-container">
-            <?php if (count($dataStorer) > 0) {?>
-            <?php foreach ($dataStorer as $data) : ?>
-                <div class="articles">
-                    <a href="article.php?id=<?= $data['id'] ?>">
-                        <h1><?= $data['title'] ?></h1>
-                    </a>
-                    <label for="">Dificulty: </label>
-                    <p><?= $data['difficulty'] ?></p>
+                        <input type="submit" id="submitBttn"> 
+                    </form>
                 </div>
-            <?php endforeach; ?>
-            <?php } else {?>
-                <p>No results found</p>
-            <?php }?>
-        </div>
+                <div id="article-place">
+                    <div id="article-container">
+                        <?php if (count($dataStorer) > 0) { ?>
+                            <?php foreach ($dataStorer as $data) : ?>
+                                <div class="articles">
+                                    <a href="article.php?id=<?= $data['id'] ?>">
+                                        <h1><?= $data['title'] ?></h1>
+                                    </a>
+                                    <label for="">Dificulty: </label>
+                                    <p><?= $data['difficulty'] ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php } else { ?>
+                            <p>No results found</p>
+                        <?php } ?>
+                    </div>
+                </div>
+
+            </div>
+        </main>
     </body>
 
     </html>
