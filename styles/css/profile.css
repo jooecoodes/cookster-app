@@ -120,25 +120,33 @@ body {
         flex-direction: column;
         background-color: #A64724;
         border-radius: 20px; }
-        body main #containerProfile #profileLowerLeftSide #badgeBttn {
-          width: 45%;
-          height: 100%;
-          border-radius: 20px;
-          background-color: #BF4226;
-          border: none;
-          color: white;
-          cursor: pointer; }
+        body main #containerProfile #profileLowerLeftSide h1 {
+          margin: 10px; }
         body main #containerProfile #profileLowerLeftSide #logoutBttn {
-          width: 45%;
-          height: 100%;
+          width: 30%;
+          height: 35%;
           border-radius: 20px;
-          background-color: #BF4226;
+          background-color: #F2F1E9;
           border: none;
-          color: white;
-          cursor: pointer; }
-        body main #containerProfile #profileLowerLeftSide #buttons-profile-badge-logout {
+          color: black;
+          cursor: pointer;
+          margin: 20px; }
+        body main #containerProfile #profileLowerLeftSide #displayBadges {
           display: flex;
-          width: 50%;
-          height: 20%;
-          justify-content: space-around;
-          align-items: center; }
+          justify-content: start;
+          align-items: center;
+          max-width: 100%;
+          overflow-x: auto;
+          padding: 20px;
+          background-color: #BF4226;
+          border-radius: 20px; }
+          body main #containerProfile #profileLowerLeftSide #displayBadges::-webkit-scrollbar {
+            width: 0.1em; }
+          body main #containerProfile #profileLowerLeftSide #displayBadges::-webkit-scrollbar-thumb {
+            background-color: transparent; }
+          body main #containerProfile #profileLowerLeftSide #displayBadges img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 5px;
+            z-index: 1; }

@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
+
     require_once("../db_conn.php");
 
     if(isset($_GET['id'])) {
@@ -42,6 +45,8 @@
                     $paragraphs = explode("~`~`~", $content);
                     
                     foreach($paragraphs as $paragraph) {
+
+                        
                         ?>
                         
                             <p> <?= $paragraph?></p>

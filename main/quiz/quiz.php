@@ -5,8 +5,22 @@ session_regenerate_id();
 header('Content-Type: text/html; charset=utf-8');
 
 $userCategory = (isset($_SESSION['usercategory'])) ?  $_SESSION['usercategory'] : "user category not set";
+$userId = (isset($_SESSION['userId'])) ? $_SESSION['userId'] : "user id not set";
 
-if (isset($_POST['submit-quiz-frm'])) {
+// select validator from database
+$quizIndicator = 0;
+$stmtSelectValidation = $conn->prepare("SELECT quiz_indicator FROM user WHERE id = ? ");
+$stmtSelectValidation->bind_param("i", $_SESSION['userId']);
+$stmtSelectValidation->execute();
+$result = $stmtSelectValidation->get_result();
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+if (!empty($rows)) {
+	foreach ($rows as $row) {
+		$quizIndicator = $row['quiz_indicator'];
+	}
+}
+if (isset($_POST['submit-quiz-frm']) && $quizIndicator == 1) {
 	$pastPoints = $_SESSION['userPoints'];
 	$numOfQuestions = (isset($_POST['numOfQuiz'])) ? $_POST['numOfQuiz'] : "num of questions not set";
 	// var_dump($dataStorer);
@@ -97,46 +111,69 @@ if (isset($_POST['submit-quiz-frm'])) {
 							}
 							echo "<p>Your corrects: $score / $numOfQuestions </p>";
 
-
-							$pointsFromQuiz = (($_POST['maxTime'] - ($_POST['maxTime'] - $_POST['timeLeft'])) + ($score * 20));
-							$pointsFromTime =
-								$pointsFromCheck =
-								$userOverallPoints = $pastPoints + $pointsFromQuiz;
-							$perfectScore = $_POST['maxTime'] + ($numOfQuestions * 20);
+							$pointsPerQuestion = 20;
+							$pointsFromQuiz = (($score * $pointsPerQuestion));
+							$userOverallPoints = $pastPoints + $pointsFromQuiz;
+							$perfectScore = ($numOfQuestions * $pointsPerQuestion);
 
 							// update points in the database
 							$stmt = $conn->prepare("UPDATE user SET points = ? WHERE id = ? ");
 							$stmt->bind_param("ii", $userOverallPoints, $_POST['userId']);
 							$result = $stmt->execute();
 							if ($result) {
-								echo "Data updated successfully";
 							} else {
 								echo "Data update failed";
+								die;
 							}
 
-							echo "<p> You gained: $pointsFromQuiz";
+							echo "<p> Your score is: $pointsFromQuiz </p> <br>";
 
-							echo "Perfect score $perfectScore";
+							echo "<p> Perfect score $perfectScore </p>";
 							//update user points in the session 
 							$_SESSION['userPoints'] = $userOverallPoints;
 
 							if ($pointsFromQuiz >= $perfectScore) {
-
+								$additionalPoints = 10000;
+								$userOverallPointsWAddtional = $additionalPoints + $userOverallPoints;
+								// update points in the database
+								$stmt = $conn->prepare("UPDATE user SET points = ? WHERE id = ? ");
+								$stmt->bind_param("ii", $userOverallPointsWAddtional, $_POST['userId']);
+								$result = $stmt->execute();
+								if ($result) {
+								} else {
+									echo "Data update failed";
+									die;
+								}
 							?>
 								<p>You have earned a certificate</p>
+								<p>You gained additional 10000 points</p>
 								<a href="../certificate/">Get certificate</a>
+								<?php
+								$_SESSION['userCertEligible'] = 1;
 
+								// update and add completion badge
+								$badgeCompletion = ",completion-badge";
+							
+								$sqlUpdateCompBadge = "UPDATE user SET badges = CONCAT(badges, ?) WHERE id = ?";
+								$stmtUpdateCompBadge = $conn->prepare($sqlUpdateCompBadge);
+								$stmtUpdateCompBadge->bind_param("si", $badgeCompletion, $userId);
+								$stmtUpdateCompBadge->execute();
+
+								if (!$stmtUpdateCompBadge->affected_rows > 0) {
+									echo "Failed to add badge";
+								}
+								?>
 							<?php
 							} else {
 							?>
-								<p>You did not get the certificate, better luck next time</p>
+								<p>You did not get the certificate, better luck next week</p>
 							<?php
 							}
 
 							?>
 
 
-							<button id="playAgainBttn">Play again<button>
+							<a href="../profile/">Go back to profile</a>
 
 
 						</div>
@@ -149,6 +186,22 @@ if (isset($_POST['submit-quiz-frm'])) {
 
 	</html>
 <?php
+
+	//update quiz indicator and date
+
+	$currentDate = new DateTime();
+	$currentDateString = $currentDate->format('Y-m-d');
+	$currentDateForEUD = $currentDate->add(new DateInterval('P1W'));
+	$expectedUpdateDate = $currentDateForEUD->format('Y-m-d');
+
+	$sqlUpdateQI = "UPDATE user SET quiz_indicator = 0, last_update_qi = ?, expected_update_qi = ? WHERE id = ?";
+	$stmtUpdateQI = $conn->prepare($sqlUpdateQI);
+	$stmtUpdateQI->bind_param("ssi", $currentDateString, $expectedUpdateDate, $userId);
+	$stmtUpdateQI->execute();
+
+	if (!$stmtUpdateQI->affected_rows > 0) {
+		echo "Failed to edit QI";
+	}
 } else {
 	echo "You can't just skip like that, please finish the quiz first";
 }

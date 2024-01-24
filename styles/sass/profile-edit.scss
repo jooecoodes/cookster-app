@@ -1,23 +1,38 @@
 @import "partials/theme-setup";
 @import "partials/config";
 @import "partials/logged-in-nav";
+.centerer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 body {
   @extend .nav-design;
 
   background-image: url("../../assets/background/image-background-leaderboard.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  button {
+    background-color: $quinary-color;
+    color: black;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
 
-  img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
   }
+  input:not(#profile) { 
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: $quinary-color;
+    color: black;
+  }
+ 
   main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 90vh;
   }
   #profile-container {
     background-color: $primary-color;
@@ -25,5 +40,54 @@ body {
     padding: 50px;
     box-shadow: 20px 20px 60px black, -20px -20px 60px black;
     border-radius: 20px;
+
+    form {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    #pfpDivider {
+      width: 50%;
+      background-color: $secondary-color;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      @extend .centerer;
+      padding: 20px;
+      img {
+        width: 15em;
+        height: 15em;
+        object-fit: cover;
+      }
+      
+    }
+    #showDivider {
+      background-color: $secondary-color;
+      padding: 20px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    #editDivider {
+      display: flex;
+      flex-direction: column;
+      background-color: $secondary-color;
+      padding: 20px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      max-height: 20em;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 0.1em;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
+      input, button {
+        margin: 5px;
+        outline: none;
+      }
+    }
+    
   }
 }

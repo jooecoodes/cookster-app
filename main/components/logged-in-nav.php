@@ -14,5 +14,4 @@
             <a href="../profile/">Profile</a>
         </div>
     </div>
-
 </nav>

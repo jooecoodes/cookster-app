@@ -90,7 +90,8 @@ body {
         body main #article-main-container #search-place #difficultyField {
           color: black; }
         body main #article-main-container #search-place #submitBttn {
-          background-color: #BF4226;
+          background-color: #F2F1E9;
+          color: black;
           padding: 10px;
           border: none;
           border-radius: 20px;

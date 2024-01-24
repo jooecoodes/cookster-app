@@ -44,50 +44,59 @@ if (isset($_SESSION['userId'])) {
             </header>
             <main>
                 <div id="profile-container">
-                    <?= $userProfile ?>
-                    <img src="<?php echo "../../assets/profile/" . $userProfile ?>" alt="profile">
-                    <button id="editProfileBttn">Edit</button>
-                    <p>User Password: <?php echo $userPassword ?></p>
-                    <button id="editPwdBttn">Edit</button>
-                    <p>User Fname: <?php echo $userFName; ?></p>
-                    <button id="editFnameBttn">Edit</button>
-                    <p>User Lname: <?php echo $userLName ?></p>
-                    <button id="editLnameBttn">Edit</button>
+                    <div class="centerer">
+                        <div id="pfpDivider">
+                            <img src="<?php echo "../../assets/profile/" . $userProfile ?>" alt="profile">
+                        </div>
+                    </div>
 
-                    <!-- pfp  -->
-                    <div class="pfpContainer edit-container">
-                        <form id="uploadForm" action="profile.php" enctype="multipart/form-data" method="POST">
-                            <input type="file" name="profile" id="profile">
-                            <input type="submit" value="Submit" name="submit">
-                        </form>
+                    <div id="showDivider">
+                        <p>User Password: <?php echo $userPassword ?></p>
+                        <p>User Fname: <?php echo $userFName; ?></p>
+                        <p>User Lname: <?php echo $userLName ?></p>
                     </div>
-                    <!-- pwd  -->
-                    <div class="pwdContainer edit-container">
-                        <form id="pwd-edit-container" method="POST">
-                            <input type="hidden" name="submit-btn-pwd" id="hidden-pwd">
-                            <input type="password" name="newpwd" placeholder="New Password" id="newPwdField">
-                            <input type="password" name="confpwd" placeholder="Confirm New Password" id="confPwdField">
-                            <input type="password" name="pwd" placeholder="Enter Password" id="newPwdConfField">
-                            <button id="submit-btn-pwd">Submit</button>
-                        </form>
-                    </div>
-                    <!-- fname  -->
-                    <div class="fnameContainer edit-container">
-                        <form id="fname-edit-container" method="POST">
-                            <input type="hidden" name="submit-btn-fname" id="hidden-fname" value="submit-btn-fname">
-                            <input type="text" name="newfname" placeholder="New First Name" id="newFnameField">
-                            <input type="password" name="pwd" placeholder="Confirm Password" id="newPwdFnameField">
-                            <button id="submit-btn-fname">Submit</button>
-                        </form>
-                    </div>
-                    <!-- lname  -->
-                    <div class="lnameContainer edit-container">
-                        <form id="lname-edit-container" method="POST">
-                            <input type="hidden" name="submit-btn-lname" id="hidden-lname" value="submit-btn-lname">
-                            <input type="text" name="newlname" placeholder="New Last Name" id="newLnameField">
-                            <input type="password" name="pwd" placeholder="Confirm Password" id="newPwdLnameField">
-                            <button id="submit-btn-lname">Submit<>
-                        </form>
+
+                    <div id="editDivider">
+
+                        <!-- pfp  -->
+                        <div class="pfpContainer edit-container">
+                            <form id="uploadForm" action="profile.php" enctype="multipart/form-data" method="POST">
+                                <label for="profile">Edit Profile:</label>
+                                <input type="file" name="profile" id="profile">
+                                <button type="submit" value="Submit" name="submit">Submit</button>
+                            </form>
+                        </div>
+                        <!-- pwd  -->
+                        <div class="pwdContainer edit-container">
+                            <form id="pwd-edit-container" method="POST">
+                                <input type="hidden" name="submit-btn-pwd" id="hidden-pwd">
+                                <label for="newPwdField">Edit Password:</label>
+                                <input type="password" name="newpwd" placeholder="New Password" id="newPwdField">
+                                <input type="password" name="confpwd" placeholder="Confirm New Password" id="confPwdField">
+                                <input type="password" name="pwd" placeholder="Enter Password" id="newPwdConfField">
+                                <button id="submit-btn-pwd">Submit</button>
+                            </form>
+                        </div>
+                        <!-- fname  -->
+                        <div class="fnameContainer edit-container">
+                            <form id="fname-edit-container" method="POST">
+                                <input type="hidden" name="submit-btn-fname" id="hidden-fname" value="submit-btn-fname">
+                                <label for="newFnameField">Edit First Name:</label>
+                                <input type="text" name="newfname" placeholder="New First Name" id="newFnameField">
+                                <input type="password" name="pwd" placeholder="Confirm Password" id="newPwdFnameField">
+                                <button id="submit-btn-fname">Submit</button>
+                            </form>
+                        </div>
+                        <!-- lname  -->
+                        <div class="lnameContainer edit-container">
+                            <form id="lname-edit-container" method="POST">
+                                <input type="hidden" name="submit-btn-lname" id="hidden-lname" value="submit-btn-lname">
+                                <label for="newLnameField">Edit Last Name:</label>
+                                <input type="text" name="newlname" placeholder="New Last Name" id="newLnameField">
+                                <input type="password" name="pwd" placeholder="Confirm Password" id="newPwdLnameField">
+                                <button id="submit-btn-lname">Submit<>
+                            </form>
+                        </div>
                     </div>
                 </div>
 

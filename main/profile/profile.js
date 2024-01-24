@@ -26,6 +26,7 @@ $(document).ready(() => {
         });
     })
 
+    $("#text").css("display", "hidden");
     //logout bttn
    $("#logoutBttn").on("click", () => {
         $.ajax({
@@ -47,8 +48,6 @@ $(document).ready(() => {
 
     })
 
-    //badge bttn
-    $("#badgeBttn").on("click", () => {
         $.ajax({
             type: "POST",
             url: "badge_setup.php",
@@ -82,7 +81,7 @@ $(document).ready(() => {
         })
 
  
-    })
+    
 
 })
 

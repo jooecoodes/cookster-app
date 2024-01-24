@@ -42,7 +42,6 @@ body {
 
             #profileUpperLeftSide {
                 padding: 20px;
-             
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -67,14 +66,12 @@ body {
                     #dividerEditProfile {
                         display: flex;
                         flex-direction: column;
-                  
                         img, button {
                             margin: 5px;
                         }
                     }
                 }
                 #dividerUpperLeftSide2 {
-                    
                     width: 100%;
                     display: flex;
                     justify-content: start;
@@ -84,6 +81,9 @@ body {
             }
             
             #profileLowerLeftSide {
+                h1 {
+                    margin: 10px;
+                }
                 padding: 20px;
                 width: 50%;
                 height: 50%;
@@ -92,31 +92,43 @@ body {
                 flex-direction: column;
                 background-color: $secondary-color;
                 border-radius: 20px;
-                #badgeBttn {
-                    width: 45%;
-                    height: 100%;
+                 #logoutBttn {
+                    width: 30%;
+                    height: 35%;
                     border-radius: 20px;
-                    background-color: $primary-color;
+                    background-color: $quinary-color;
                     border: none;
-                    color: white;  
+                    color: black;  
                     cursor: pointer;
+                    margin: 20px;
                 }
-                #logoutBttn {
-                    width: 45%;
-                    height: 100%;
-                    border-radius: 20px;
-                    background-color: $primary-color;
-                    border: none;
-                    color: white;
-                    cursor: pointer;
-                }
-                #buttons-profile-badge-logout {
-                    
+               
+
+                #displayBadges {
                     display: flex;
-                    width: 50%;
-                    height: 20%;
-                    justify-content: space-around;
+                    justify-content: start;
                     align-items: center;
+                    max-width: 100%;
+                    overflow-x: auto;
+                    &::-webkit-scrollbar {
+                        width: 0.1em;
+                      }
+              
+                      &::-webkit-scrollbar-thumb {
+                        background-color: transparent;
+                      }
+                    padding: 20px;
+                    background-color: $primary-color;
+                    border-radius: 20px;
+                   
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        margin-right: 5px;
+                        z-index: 1;
+
+                    }
                 }
 
             }

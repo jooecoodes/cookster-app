@@ -105,7 +105,7 @@ if (isset($_POST['dataIndex'])) {
                 <label for="videoIframeField">Video Iframe to embed</label>
                 <input type="text" name="video-iframe-article-container" id="videoIframeField">
 
-                <label for="contentField">Add /n/n for the end of the paragraph</label>
+                <label for="contentField">Add ~`~`~ for the end of the paragraph, Add ~~~`~~~ for header and ~~`~~ for Subheader, Add ~`~ for every end of the word for a list</label>
                 <textarea name="content-article" id="contentField" cols="30" rows="10"></textarea>
 
                 <select name="difficulty-article" id="difficultyField">

@@ -43,12 +43,12 @@ $(document).ready(() => {
             
             console.log(response);
             if(response == "Fname is ok"){
-              $("#fnameIndicator").text("First Name is fine");
+              // $("#fnameIndicator").text("First Name is fine");
               $("#fname").css("border-color", "green")
               fnameFlag = true;
             } 
             if (response == "Fname is not ok") {
-              $("#fnameIndicator").text("First Name must not exceed 20 letters");
+              // $("#fnameIndicator").text("First Name must not exceed 20 letters");
               $("#fname").css("border-color", "red")
               fnameFlag = false;
             }
@@ -73,12 +73,12 @@ $(document).ready(() => {
           success: function(response){
             console.log("success response")
             if(response == "Lname is ok"){
-              $("#lnameIndicator").text("Last Name is fine");
+              // $("#lnameIndicator").text("Last Name is fine");
               $("#lname").css("border-color", "green")
               lnameFlag = true;
             } 
             if (response == "Lname is not ok") {
-              $("#lnameIndicator").text("Last Name must not exceed 8 letters");
+              // $("#lnameIndicator").text("Last Name must not exceed 8 letters");
               $("#lname").css("border-color", "red")
               lnameFlag = false;
             }
@@ -105,15 +105,15 @@ $(document).ready(() => {
           console.log(response);
           let responseInt = parseInt(response);
           if(responseInt == 2) {
-            $("#fnameIndicator").text("Full name is already taken")
-            $("#lnameIndicator").text("Full name is already taken")
+            // $("#fnameIndicator").text("Full name is already taken")
+            // $("#lnameIndicator").text("Full name is already taken")
             $("#fname").css("border-color", "red")
             $("#lname").css("border-color", "red")
             fnameFlag = false;
             lnameFlag = false;
           } else {
-            $("#fnameIndicator").text("Full name is not registered")
-            $("#lnameIndicator").text("Full name is not registered")
+            // $("#fnameIndicator").text("Full name is not registered")
+            // $("#lnameIndicator").text("Full name is not registered")
             $("#fname").css("border-color", "green")
             $("#lname").css("border-color", "green")
             fnameFlag = true;

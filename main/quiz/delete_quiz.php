@@ -9,7 +9,6 @@
 
         $stmtDelete->execute();
 
-
         // delete if exist
         if($stmtDelete->affected_rows > 0) {
             echo "Successfully deleted quiz";

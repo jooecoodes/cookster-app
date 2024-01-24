@@ -56,11 +56,11 @@ if (isset($_SESSION['userId'])) {
                                 $userFullName = $dataStorer[$i]['fname'] . " " . $dataStorer[$i]['lname'];
         
                             ?>
-                            <tr>
-                                <td><?= $i ?></td>
+                            <tr id="tbody-tr">
+                                <td><?= $i + 1?></td>
                                 <td><?= $userFullName ?></td>
                                 <td><?= $dataStorer[$i]['useremail'] ?></td>
-                                <td><?= $dataStorer[$i]['points'] ?></td>
+                                <td><img src="../../assets/star.png" alt="star"><?= $dataStorer[$i]['points'] ?></td>
                             </tr>
         
                         <?php endfor; ?>

@@ -5,17 +5,15 @@ $userCategory = (isset($_SESSION['usercategory'])) ? $_SESSION['usercategory'] :
 if (isset($_SESSION['userId']) && $userCategory == 'admin') {
     echo $_ENV['GITHUB_ADMIN_TOKEN'];
 
-    // Replace with your GitHub username, repository name, and access token
     $username = $_ENV['GITHUB_USERNAME'];
     $repoName = $_ENV['GITHUB_REPO_NAME'];
     $accessToken = $_ENV['GITHUB_ADMIN_TOKEN'];
 
-    // Fetch repository information using cURL
     $repoUrl = "https://api.github.com/repos/{$username}/{$repoName}";
     $ch = curl_init($repoUrl);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "Authorization: Bearer {$accessToken}",
-        "User-Agent: your-username",
+        "User-Agent: $username",
     ]);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($ch);

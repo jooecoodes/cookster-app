@@ -14,9 +14,10 @@ body {
     height: 80vh;
     color: white;
     #table-container {
-        
-    width: 60%;
-     max-height: 80%; /* Adjust the height as needed */
+      padding: 25px;
+      border-radius: 20px;
+      width: 60%;
+      max-height: 80%; /* Adjust the height as needed */
       overflow-y: auto;
       background-color: $primary-color;
       box-shadow: 20px 20px 60px black, -20px -20px 60px black;
@@ -29,18 +30,42 @@ body {
       }
     }
     #leaderboardTable {
-        border-collapse: collapse;
-        width: 100%;
-    
+      border-collapse: separate;
+      border-spacing: 0 6px;
+      width: 100%;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+   
     }
-    th, td {
-        border: 1px solid black;
-        text-align: left;
-        padding: 8px;
-      }
-  
-      th {
-        background-color: $primary-color;
-      }
+    td {
+      background-color: $secondary-color;
+    }
+    td:has(img) {
+      display: flex;
+      align-items: center;
+    }
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+     
+    }
+    
+    // individualize
+
+    // first col / rank
+    #tbody-tr > :first-child {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    // last col / points
+    #tbody-tr > :last-child {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
   }
 }

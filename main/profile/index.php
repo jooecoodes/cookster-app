@@ -89,12 +89,16 @@ if (isset($_SESSION['userId']) && $userCategory == 'user') {
                 <div id="profileLowerLeftSide">
                     <h1>Badges:</h1>
                     <div id="displayBadges">
+
                     </div>
-                    <div id="buttons-profile-badge-logout">
-                        <button id="badgeBttn">Retrieve Badges</button>
+                    <center>
+
                         <button id="logoutBttn">Log out</button>
-                    </div>
-                    
+                    </center>
+                     
+
+
+
                 </div>
 
 
