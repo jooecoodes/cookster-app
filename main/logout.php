@@ -6,11 +6,10 @@
         session_destroy();
     
        
-        // header("Location: /login.php");
+        header("Location: /login.php");
         exit();
     } else {
-        
-        echo "User is not logged in.";
+        header("Location: ./profile/");
     }
 
 ?>

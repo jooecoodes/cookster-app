@@ -56,7 +56,9 @@ if (isset($_POST['submit_frm'])) {
                     }
                     $conn->close();
                 } else {
-                    echo "Login or password is invalid";
+                    // echo "Login or password is invalid";
+                    displayMessage("Login or password is invalid");
+                    header("Location: index.php");
                 }
             } else {
                 echo "Validation Failed";
@@ -69,4 +71,8 @@ if (isset($_POST['submit_frm'])) {
     }
 } else {
     echo "Invalid";
+}
+
+function displayMessage($message) {
+    echo "alert($message);";
 }
